@@ -14,7 +14,7 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>TestServlet</servlet-name>
-        <url-pattern>/authuser</url-pattern> <!--Map where this pattern maps to the servlet-->
+        <url-pattern>/userauth</url-pattern> <!--Map where this pattern maps to the servlet-->
     </servlet-mapping>
 
     <filter>

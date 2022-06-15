@@ -113,7 +113,8 @@ public class TestServlet extends HttpServlet {      // Registered in web.xml
             Send(500, "We messed up", resp);
             return;
         }
-        System.out.println(isLogin + " and " + isRegister);
+        System.out.println(name+" identified login was "+((isLogin)?"":"not ")+ "selected");
+        System.out.println(name+" identified register was "+((isRegister)?"":"not ")+ "selected");
 
         Boolean supported = false;
         for (String loc: supportedDestinations) {
@@ -135,28 +136,47 @@ public class TestServlet extends HttpServlet {      // Registered in web.xml
             String password = input.get("p").toString();
 
             // error codes
-            if (!username.equalsIgnoreCase(user1)) {Send(404, "User not found",  resp); return;}
-            if (username.contains("!")) {Send(400, "Input contained an illegal character",  resp); return; }
-            if (!(username.endsWith("@revature.net") || username.endsWith("@Revature.net"))) {
-                Send(400, "Username must end with @revature.net",  resp); return; }
+            if (!username.equalsIgnoreCase(user1)) {         Send(404, "User not found",                        resp); return; }
+            if (username.contains("!")) {                    Send(400, "Input contained an illegal character",  resp); return; }
+            if (!(username.endsWith("@revature.net") ||
+                    username.endsWith("@Revature.net"))) {   Send(400, "Username must end with @revature.net",  resp); return; }
             if (username.length() == 0 || password.length() == 0) {
-                Send(400, "An input field was left blank",         resp); return; }
+                                                             Send(400, "An input field was left blank",         resp); return; }
             if (username.length() < 14 || username.length() > 32 || password.length() < 5 || password.length() > 32) {
-                Send(400, "An input was too long or short",        resp); return; }
+                                                             Send(400, "An input was too long or short",        resp); return; }
             if (username.equalsIgnoreCase(user1) && password.equals(pass1)) {
                 HttpSession session = req.getSession();
-                session.setAttribute("auth-user", username);
-                Send(204, "Logged in", resp);
-                return;
-            } else {
-                Send(401, "Invalid credentials", resp);
-                return;
-            }
+                session.setAttribute("auth-user", username); Send(204, "Logged in",                             resp); return; }
+            else {                                           Send(401, "Invalid credentials",                   resp); return; }
             // the comment is unreachable code
         }
         if (destination.equals("register")) {
-            // do register things
-            // no persistence
+            String username = input.get("u").toString();
+            String password = input.get("p").toString();
+            String fname = input.get("f").toString();
+            String lname = input.get("l").toString();
+            if (username.length() == 0 || password.length() == 0) {
+                Send(400, "Form input was blank", resp); return;
+            }
+            if ( !(username.endsWith("@revature.net") || username.endsWith("@Revature.net")) ) {
+                Send(400, "Username must end with @revature.net", resp); return;
+            }
+            if (username.length() > 32) {
+                Send(400, "Username length too long", resp); return;
+            }
+            if (username.length() < 14) {
+                Send(400, "Username length too short", resp); return;
+            }
+            if (username.contains("!")) {
+                Send(400, "Username contained an illegal character: !", resp); return;
+            }
+            if (username.equalsIgnoreCase(user1)) {
+                Send(409, "Username already taken!", resp); return;
+            }
+            if (password.length() < 5) {
+                Send(400, "Password must be at least 5 characters", resp); return;
+            }
+            Send(204, "Welcome, "+fname+" "+lname+ ", you have been registered.", resp); return;
         }
     }
 
