@@ -19,7 +19,7 @@ import java.util.HashMap;
  * Servlet designed for easy sharing
  * Branches off main can use this without DB dependencies
  */
-public class TestServlet extends HttpServlet {
+public class TestServlet extends HttpServlet {      // Registered in web.xml
     private static ObjectMapper mapper = new ObjectMapper();
     private static final String name = "TestServlet";
     final private static String complaintsFile = "complaints.log";
@@ -153,6 +153,10 @@ public class TestServlet extends HttpServlet {
                 return;
             }
             // the comment is unreachable code
+        }
+        if (destination.equals("register")) {
+            // do register things
+            // no persistence
         }
     }
 
