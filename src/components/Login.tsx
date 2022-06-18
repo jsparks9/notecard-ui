@@ -1,4 +1,5 @@
 import { SyntheticEvent, useState } from "react";
+import { Navigate } from "react-router-dom";
 import { User } from "../models/user";
 import ErrorMessage from "./ErrorMessage";
 
@@ -81,7 +82,8 @@ function Login(props: ILoginProps) { // or any instead of {}, placeholder for no
         }
 
     return ( // this is a fragment
-        props.currentUser ? <p>You're already logged in, redirecting you to Dashboard</p> : 
+        props.currentUser ? //<p>You're already logged in, redirecting you to Dashboard</p> : 
+        <Navigate to="/dashboard"/> :
         // show dashboard instead of this <p> tag content
         <> 
             <h4>Login to Notecard</h4>

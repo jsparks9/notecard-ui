@@ -14,3 +14,5 @@ function Dashboard(props: IDashboardProps) {
         </> 
     )
 }
+
+export default Dashboard;
