@@ -1,5 +1,6 @@
 import { SyntheticEvent, useState } from "react";
 import { User } from "../models/user";
+import ErrorMessage from "./ErrorMessage";
 
 interface ILoginProps {
     // fields any methods : interface is most appropriate
@@ -93,9 +94,10 @@ function Login(props: ILoginProps) { // or any instead of {}, placeholder for no
             <br/><br/>
             </div>
             { errorMsg ? // ternary op
-                <div>
-                    <p className="alert">{errorMsg}</p>
-                </div>
+                // <div>
+                //     <p className="alert">{errorMsg}</p>
+                // </div>
+                <ErrorMessage errorMessage = {errorMsg}
                 : // if falsey
                 <></>
             }
