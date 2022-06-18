@@ -97,7 +97,7 @@ function Login(props: ILoginProps) { // or any instead of {}, placeholder for no
                 // <div>
                 //     <p className="alert">{errorMsg}</p>
                 // </div>
-                <ErrorMessage errorMessage = {errorMsg}
+                <ErrorMessage errorMessage = {errorMsg}></ErrorMessage>
                 : // if falsey
                 <></>
             }
