@@ -9,8 +9,12 @@ function App() {
   const [authUser, setAuthUser] = useState<User>();
 
   return (
-    <Login currentUser={authUser} setCurrentUser={setAuthUser}/>
-
+    <>
+      <Login currentUser={authUser} setCurrentUser={setAuthUser}/>
+      {
+        authUser ? <p>Logged you in, {authUser.fname}</p> : <></>
+      }
+    </>
   );
 }
 

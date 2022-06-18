@@ -70,7 +70,8 @@ function Login(props: ILoginProps) { // or any instead of {}, placeholder for no
                 }).then(data => {
                     console.log('Response data:');
                     console.log(data); 
-                    props.setCurrentUser
+                    props.setCurrentUser(data);
+                    console.log(props.currentUser);
                 }).catch(err => {
                     setErrorMsg("There was a problem comminicating with the API");
                 })
@@ -79,6 +80,8 @@ function Login(props: ILoginProps) { // or any instead of {}, placeholder for no
         }
 
     return ( // this is a fragment
+        props.currentUser ? <p>You're already logged in, redirecting you to Dashboard</p> : 
+        // show dashboard instead of this <p> tag content
         <> 
             <h4>Login to Notecard</h4>
             <div id="login-form">
