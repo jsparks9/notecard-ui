@@ -45,7 +45,7 @@ function Login(props: ILoginProps) { // or any instead of {}, placeholder for no
             console.log("password is: " + password);
         }
         
-        let login = (e: SyntheticEvent) => {
+        let login = async (e: SyntheticEvent) => {
             
             e.preventDefault(); // prevent default event logic from running
             // like if you use form, prevent it from sending a GET request with params
@@ -57,44 +57,23 @@ function Login(props: ILoginProps) { // or any instead of {}, placeholder for no
             else {
                 setErrorMsg('');
 
-                let respData = fetch('http://localhost:5000/notecard/auth', {
+                let resp = await fetch('http://localhost:5000/notecard/auth', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
                     },
                     body: JSON.stringify({username, password})
-                }).then(resp => {
-                    console.log(`Response status: ${resp.status}`);
-                    console.log(`Response timestamp: ${Date.now()}`);
-
-                    if (Math.floor(resp.status/100) !== 2) {
-                        setErrorMsg('Could not validate credetials');
-                    } 
-                    return resp.json(); // returns a promise
+                });
                 
-                }).then(data => {
-                    console.log('Response data:');
-                        console.log(data); 
-                        props.setCurrentUser(new User(
-                                            (Number) (`${data['id']}`),
-                                            (Number) (`${data['role_id']}`),
-                                                      `${data['username']}`,
-                                                      `${data['fname']}`,
-                                                      `${data['lname']}`,
-                                                      `${data['password']}`));
-                        return data;
-                
-                }).catch(err => {
-                    setErrorMsg("There was a problem comminicating with the API");
-                })
+                if (Math.floor(resp.status/100) !== 2) {
+                    setErrorMsg("Could not validate provided credentials!")
+                    let data = await resp.text();
+                    setErrorMsg(data);
 
-                if (respData) {
-                    respData.then(data => {
-                        console.log(props.currentUser);
-                    })
-
-                }
-        
+                } else {
+                    let data = await resp.json();
+                    props.setCurrentUser(data);
+                }     
             }
         }
         console.log("Try #2");
