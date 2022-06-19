@@ -64,7 +64,7 @@ function Login(props: ILoginProps) { // or any instead of {}, placeholder for no
                     },
                     body: JSON.stringify({username, password})
                 }).then(resp => {
-                    if (Math.floor(resp.status/100) != 2) {
+                    if (Math.floor(resp.status/100) !== 2) {
                         setErrorMsg('Could not validate credetials');
                     } else {
                         return resp.json(); // returns a promise
@@ -72,7 +72,13 @@ function Login(props: ILoginProps) { // or any instead of {}, placeholder for no
                 }).then(data => {
                     console.log('Response data:');
                     console.log(data); 
-                    props.setCurrentUser(data);
+                    props.setCurrentUser(new User(
+                                        (Number) (`${data['id']}`),
+                                        (Number) (`${data['role_id']}`),
+                                                  `${data['username']}`,
+                                                  `${data['fname']}`,
+                                                  `${data['lname']}`,
+                                                  `${data['password']}`)); 
                     console.log(props.currentUser);
                 }).catch(err => {
                     setErrorMsg("There was a problem comminicating with the API");
