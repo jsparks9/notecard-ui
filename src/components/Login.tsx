@@ -72,13 +72,8 @@ function Login(props: ILoginProps) { // or any instead of {}, placeholder for no
                     } 
                     return resp.json(); // returns a promise
                 
-                }).catch(err => {
-                    setErrorMsg("There was a problem comminicating with the API");
-                })
-
-                if (respData) {
-                    respData.then(data => {
-                        console.log('Response data:');
+                }).then(data => {
+                    console.log('Response data:');
                         console.log(data); 
                         props.setCurrentUser(new User(
                                             (Number) (`${data['id']}`),
@@ -86,10 +81,16 @@ function Login(props: ILoginProps) { // or any instead of {}, placeholder for no
                                                       `${data['username']}`,
                                                       `${data['fname']}`,
                                                       `${data['lname']}`,
-                                                      `${data['password']}`)); 
-                        console.log(props.currentUser?.fname);
+                                                      `${data['password']}`));
+                        return data;
+                
+                }).catch(err => {
+                    setErrorMsg("There was a problem comminicating with the API");
+                })
 
-
+                if (respData) {
+                    respData.then(data => {
+                        console.log(props.currentUser);
                     })
 
                 }
