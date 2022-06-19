@@ -13,8 +13,11 @@ function Navbar(props: INavbarProps) {
     const navigate = useNavigate();
     // allows routing
 
-    function logout() { 
-        console.log('logout not implemented yet');
+    async function logout() { 
+        await fetch('http://localhost:5000/notecard/auth', {method: 'DELETE'});
+        props.setCurrentUser(undefined);
+        navigate("/login");
+
     }
 
     function goTo(route: string) {
