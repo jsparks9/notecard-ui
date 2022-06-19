@@ -57,37 +57,49 @@ function Login(props: ILoginProps) { // or any instead of {}, placeholder for no
             else {
                 setErrorMsg('');
 
-                fetch('http://localhost:5000/notecard/auth', {
+                let respData = fetch('http://localhost:5000/notecard/auth', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
                     },
                     body: JSON.stringify({username, password})
                 }).then(resp => {
+                    console.log(`Response status: ${resp.status}`);
+                    console.log(`Response timestamp: ${Date.now()}`);
+
                     if (Math.floor(resp.status/100) !== 2) {
                         setErrorMsg('Could not validate credetials');
-                    } else {
-                        return resp.json(); // returns a promise
-                    }
-                }).then(data => {
-                    console.log('Response data:');
-                    console.log(data); 
-                    props.setCurrentUser(new User(
-                                        (Number) (`${data['id']}`),
-                                        (Number) (`${data['role_id']}`),
-                                                  `${data['username']}`,
-                                                  `${data['fname']}`,
-                                                  `${data['lname']}`,
-                                                  `${data['password']}`)); 
-                    console.log(props.currentUser);
+                    } 
+                    return resp.json(); // returns a promise
+                
                 }).catch(err => {
                     setErrorMsg("There was a problem comminicating with the API");
                 })
+
+                if (respData) {
+                    respData.then(data => {
+                        console.log('Response data:');
+                        console.log(data); 
+                        props.setCurrentUser(new User(
+                                            (Number) (`${data['id']}`),
+                                            (Number) (`${data['role_id']}`),
+                                                      `${data['username']}`,
+                                                      `${data['fname']}`,
+                                                      `${data['lname']}`,
+                                                      `${data['password']}`)); 
+                        console.log(props.currentUser?.fname);
+
+
+                    })
+
+                }
         
             }
         }
-
+        console.log("Try #2");
+        console.log(props.currentUser);
     return ( // this is a fragment
+    
         props.currentUser ? //<p>You're already logged in, redirecting you to Dashboard</p> : 
         <Navigate to="/dashboard"/> :
         // show dashboard instead of this <p> tag content
