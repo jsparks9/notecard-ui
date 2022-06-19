@@ -1,25 +1,32 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useState } from 'react';
 import './App.css';
+import Login from './components/Login';
+import { User } from './models/user';
+import { Route, Routes } from 'react-router-dom';
+import Dashboard from './components/Dashboard';
+import Navbar from './components/Navbar';
+import Register from './components/Register';
 
 function App() {
+
+  const [authUser, setAuthUser] = useState<User>(); // undefined as unknown as User
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Navbar currentUser={authUser} setCurrentUser={setAuthUser} />
+      <Routes>
+        <Route path="/login" element={<Login currentUser={authUser} setCurrentUser={setAuthUser} />}/>
+        <Route path='/dashboard'  element={<Dashboard currentUser={authUser}/>}/>
+        <Route path='/register'  element={<Register/>}/>
+      </Routes>
+    </>
+
+    // <>
+    //   <Login currentUser={authUser} setCurrentUser={setAuthUser}/>
+    //   {
+    //     authUser ? <p>Logged you in, {authUser.fname}</p> : <></>
+    //   }
+    // </>
   );
 }
 
