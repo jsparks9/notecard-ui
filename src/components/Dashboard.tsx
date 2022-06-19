@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { Navigate } from "react-router-dom";
 import { User } from "../models/user"
 
@@ -7,6 +8,14 @@ interface IDashboardProps {
 }
 
 function Dashboard(props: IDashboardProps) {
+
+    //last lecture of Thursday on JSX and lifecycle
+    useEffect(() => {
+        console.log('the dashboard component was rendered');
+        return (() => {
+            console.log('the dashboard component was derendered');
+        })
+    })
 
     return ( 
         !props.currentUser ? //<p>You're not logged in</p> :
