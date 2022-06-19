@@ -2,6 +2,8 @@ import { Typography } from "@mui/material";
 import { useEffect, useState } from "react";
 import { Navigate } from "react-router-dom";
 import { User } from "../models/user"
+import { DataGrid, GridColDef, GridValueGetterParams } from '@mui/x-data-grid';
+
 
 
 interface IDashboardProps {
@@ -13,6 +15,18 @@ function Dashboard(props: IDashboardProps) {
     const [users, setUsers] = useState([] as User[]); 
     //const [users, setUsers] = useState<User[]>([]); // also works
     
+    const columns: GridColDef[] = [
+        { field: 'id', headerName: 'ID', width: 70 },
+        { field: 'role_id', headerName: 'Role ID', width: 70 },
+        { field: 'fname', headerName: 'First name', width: 130 },
+        { field: 'lname', headerName: 'Last name', width: 130 },
+        { field: 'username', headerName: 'Username', width: 260 },
+      ];
+
+
+
+
+
     //last lecture of Thursday on JSX and lifecycle
     useEffect(() => {
         console.log('the dashboard component was rendered');
@@ -32,7 +46,18 @@ function Dashboard(props: IDashboardProps) {
         <>
             <h1>Welcome, {props.currentUser.fname}</h1>
             <Typography variant="subtitle1">Notecard Users</Typography>
-            <table>
+            <div style={{ height: 400, width: '100%' }}>
+                <DataGrid
+                rows={users}
+                columns={columns}
+                pageSize={5}
+                rowsPerPageOptions={[5]}
+                checkboxSelection
+                />
+            </div>
+
+
+            {/* <table>
                 <thead>
                     <tr>
                         <th>ID</th>
@@ -53,7 +78,7 @@ function Dashboard(props: IDashboardProps) {
                         </tr>)
                     })}
                 </tbody>
-            </table>
+            </table> */}
         </> 
     )
 }
