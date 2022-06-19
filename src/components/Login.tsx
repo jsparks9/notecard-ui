@@ -56,24 +56,27 @@ function Login(props: ILoginProps) { // or any instead of {}, placeholder for no
             }
             else {
                 setErrorMsg('');
+                try {
+                    let resp = await fetch('http://localhost:5000/notecard/auth', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({username, password})
+                    });
+                    
+                    if (Math.floor(resp.status/100) !== 2) {
+                        setErrorMsg("Could not validate provided credentials!")
+                        let data = await resp.text();
+                        setErrorMsg(data);
 
-                let resp = await fetch('http://localhost:5000/notecard/auth', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({username, password})
-                });
-                
-                if (Math.floor(resp.status/100) !== 2) {
-                    setErrorMsg("Could not validate provided credentials!")
-                    let data = await resp.text();
-                    setErrorMsg(data);
-
-                } else {
-                    let data = await resp.json();
-                    props.setCurrentUser(data);
-                }     
+                    } else {
+                        let data = await resp.json();
+                        props.setCurrentUser(data);
+                    }   
+                } catch(err) {
+                    setErrorMsg("There was an error communicating with the API");
+                } 
             }
         }
         console.log("Try #2");
