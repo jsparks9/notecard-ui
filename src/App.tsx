@@ -15,7 +15,7 @@ function App() {
     <>
       <Navbar currentUser={authUser} setCurrentUser={setAuthUser} />
       <Routes>
-        <Route path="/login" element={<Login currentUser={authUser} setCurrentUser={setAuthUser} />}/>
+        <Route path="/login" element={<Login currentUser={authUser} setCurrentUser={setAuthUser}/>}/>
         <Route path='/dashboard'  element={<Dashboard currentUser={authUser}/>}/>
         <Route path='/register'  element={<Register/>}/>
       </Routes>

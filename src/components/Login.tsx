@@ -87,8 +87,9 @@ function Login(props: ILoginProps) { // or any instead of {}, placeholder for no
         <Navigate to="/dashboard"/> :
         // show dashboard instead of this <p> tag content
         <> 
-            <h4>Login to Notecard</h4>
+            
             <div id="login-form">
+            <h2>Login to Notecard</h2>
             <input type="email" id="username" placeholder="user@Revature.net" onChange={updateUsername}></input>
             <br/><br/>
             <input type="password" id="login-password" placeholder="Password" onChange={updatePassword}></input>
@@ -96,6 +97,8 @@ function Login(props: ILoginProps) { // or any instead of {}, placeholder for no
             <button id="login-button" onClick={login}>Login</button>
             <br/><br/>
             </div>
+            <div
+                id="error-message">
             { errorMsg ? // ternary op
                 // <div>
                 //     <p className="alert">{errorMsg}</p>
@@ -103,7 +106,7 @@ function Login(props: ILoginProps) { // or any instead of {}, placeholder for no
                 <ErrorMessage errorMessage = {errorMsg}></ErrorMessage>
                 : // if falsey
                 <></>
-            }
+            }</div>
         </> // need to render it somewhere
     )
 
