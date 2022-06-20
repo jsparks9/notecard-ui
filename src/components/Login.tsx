@@ -1,3 +1,4 @@
+import { Box, TextField } from "@mui/material";
 import { SyntheticEvent, useState } from "react";
 import { Navigate } from "react-router-dom";
 import { User } from "../models/user";
@@ -88,24 +89,46 @@ function Login(props: ILoginProps) { // or any instead of {}, placeholder for no
         // show dashboard instead of this <p> tag content
         <> 
             <h4>Login to Notecard</h4>
-            <div id="login-form">
-            <input type="email" id="username" placeholder="user@Revature.net" onChange={updateUsername}></input>
-            <br/><br/>
-            <input type="password" id="login-password" placeholder="Password" onChange={updatePassword}></input>
-            <br/><br/>
-            <button id="login-button" onClick={login}>Login</button>
-            <br/><br/>
-            </div>
-            { errorMsg ? // ternary op
-                // <div>
-                //     <p className="alert">{errorMsg}</p>
-                // </div>
-                <ErrorMessage errorMessage = {errorMsg}></ErrorMessage>
-                : // if falsey
-                <></>
-            }
-        </> // need to render it somewhere
-    )
+            <Box
+            component="form"
+            sx={{
+            '& .MuiTextField-root': { m: 1, width: '25ch' },
+            }}
+            noValidate
+            autoComplete="off"
+            >
+                <div>
+                    <TextField
+                        id="un-registration"
+                        label="myusername@revature.net"
+                        type="Email"
+                        onChange={updateUsername}
+                    />
+                </div>
+                <div>
+                    <TextField
+                        id="password-registration"
+                        label="Password"
+                        type="password"
+                        autoComplete="current-password"
+                        //helperText="Password must include: "
+                        onChange={updatePassword}
+                    />
+                </div>
+                <br/>
+                <button id="login-button" onClick={login}>Login</button>
+                <br/>
+                { errorMsg ? // ternary op
+                    // <div>
+                    //     <p className="alert">{errorMsg}</p>
+                    // </div>
+                    <ErrorMessage errorMessage = {errorMsg}></ErrorMessage>
+                    : // if falsey
+                    <></>
+                }
+            </Box>
+        </> 
+    );
 
 }
 

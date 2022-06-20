@@ -111,8 +111,8 @@ function Register(props: IRegisterProps) {
                         type="Email"
                         onChange={updateUsername}
                     />
-            
                 </div>
+
                 <div>
                     <TextField
                         id="fn-registration"
@@ -121,6 +121,7 @@ function Register(props: IRegisterProps) {
                         onChange={updateFirstname}
                     />
                 </div>
+
                 <div>
                     <TextField
                         id="ln-registration"
@@ -130,19 +131,21 @@ function Register(props: IRegisterProps) {
                 
                     />
                 </div>
+
                 <div>
                     <TextField
                         id="password-registration"
                         label="Password"
                         type="password"
                         autoComplete="current-password"
-                        helperText="Password must include: "
+                        //helperText="Password must include: "
                         onChange={updatePassword}
                     />
                 </div>
-            <br/><br/>
-            <button id="register-button" onClick={register}>Register</button>
-            <br/><br/>
+
+                <br/>
+                <button id="register-button" onClick={register}>Register</button>
+                <br/>
             </div>
             { errorMsg ? // ternary op
                 // <div>
