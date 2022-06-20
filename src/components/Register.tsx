@@ -1,5 +1,6 @@
 import { Box, TextField } from "@mui/material";
 import { useState, SyntheticEvent } from "react";
+import { Navigate } from "react-router-dom";
 import { User } from "../models/user";
 import ErrorMessage from "./ErrorMessage";
 
@@ -87,6 +88,11 @@ function Register(props: IRegisterProps) {
     }
     
     return ( 
+
+        props.currentUser ? //<p>You're already logged in, redirecting you to Dashboard</p> : 
+        <Navigate to="/dashboard"/> :
+        // show dashboard instead of this <p> tag content
+
     <>
         <h4>Please enter registration details</h4>
         <Box
@@ -121,9 +127,7 @@ function Register(props: IRegisterProps) {
                         label="Last Name"
                         type="text"
                         onChange={updateLastname}
-                        InputLabelProps={{
-                        shrink: true,
-                        }}
+                
                     />
                 </div>
                 <div>
