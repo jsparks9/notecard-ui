@@ -98,35 +98,44 @@ function Register(props: IRegisterProps) {
             autoComplete="off"
         >
             <div>
-                <>
-            <TextField
-                id="un-registration"
-                label="myusername@revature.net"
-                type="Email"
-                onChange={updateUsername}
-            />
+                <div>
+                    <TextField
+                        id="un-registration"
+                        label="myusername@revature.net"
+                        type="Email"
+                        onChange={updateUsername}
+                    />
             
-            </>
-            <TextField
-                id="fn-registration"
-                label="First Name"
-                type="text"
-            />
-            <TextField
-                id="ln-registration"
-                label="Last Name"
-                type="text"
-                InputLabelProps={{
-                shrink: true,
-                }}
-            />
-            <TextField
-                id="password-registration"
-                label="Password"
-                type="password"
-                autoComplete="current-password"
-                helperText="Password must include: "
-            />
+                </div>
+                <div>
+                    <TextField
+                        id="fn-registration"
+                        label="First Name"
+                        type="text"
+                        onChange={updateFirstname}
+                    />
+                </div>
+                <div>
+                    <TextField
+                        id="ln-registration"
+                        label="Last Name"
+                        type="text"
+                        onChange={updateLastname}
+                        InputLabelProps={{
+                        shrink: true,
+                        }}
+                    />
+                </div>
+                <div>
+                    <TextField
+                        id="password-registration"
+                        label="Password"
+                        type="password"
+                        autoComplete="current-password"
+                        helperText="Password must include: "
+                        onChange={updatePassword}
+                    />
+                </div>
             <br/><br/>
             <button id="register-button" onClick={register}>Register</button>
             <br/><br/>
