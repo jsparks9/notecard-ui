@@ -21,6 +21,34 @@ function Register(props: IRegisterProps) {
     const [fname, setFirstname] = useState('');
     const [lname, setLastname] = useState('');
     const [errorMsg, setErrorMsg] = useState<string>(); 
+
+    let updateUsername = (e: SyntheticEvent) => {
+        console.log('username field updated');
+        //let username = (e.target as HTMLInputElement).value;
+        setUsername((e.target as HTMLInputElement).value);
+        console.log("username is: " + username);
+    }
+
+    let updatePassword = (e: SyntheticEvent) => {
+        console.log('password field updated');
+        //let password = (e.target as HTMLInputElement).value;
+        setPassword((e.target as HTMLInputElement).value);
+        console.log("password is: " + password);
+    }
+
+    let updateFirstname = (e: SyntheticEvent) => {
+        console.log('First name field updated');
+        //let username = (e.target as HTMLInputElement).value;
+        setFirstname((e.target as HTMLInputElement).value);
+        console.log("First name is: " + fname);
+    }
+
+    let updateLastname = (e: SyntheticEvent) => {
+        console.log('Last name field updated');
+        //let password = (e.target as HTMLInputElement).value;
+        setLastname((e.target as HTMLInputElement).value);
+        console.log("Last name is: " + lname);
+    }
     
     let register = async (e: SyntheticEvent) => {
             
@@ -28,33 +56,6 @@ function Register(props: IRegisterProps) {
         // like if you use form, prevent it from sending a GET request with params
         // because we want to control what the button does.
 
-        let updateUsername = (e: SyntheticEvent) => {
-            console.log('username field updated');
-            //let username = (e.target as HTMLInputElement).value;
-            setUsername((e.target as HTMLInputElement).value);
-            console.log("username is: " + username);
-        }
-
-        let updatePassword = (e: SyntheticEvent) => {
-            console.log('password field updated');
-            //let password = (e.target as HTMLInputElement).value;
-            setPassword((e.target as HTMLInputElement).value);
-            console.log("password is: " + password);
-        }
-
-        let updateFirstname = (e: SyntheticEvent) => {
-            console.log('First name field updated');
-            //let username = (e.target as HTMLInputElement).value;
-            setFirstname((e.target as HTMLInputElement).value);
-            console.log("First name is: " + fname);
-        }
-
-        let updateLastname = (e: SyntheticEvent) => {
-            console.log('Last name field updated');
-            //let password = (e.target as HTMLInputElement).value;
-            setLastname((e.target as HTMLInputElement).value);
-            console.log("Last name is: " + lname);
-        }
 
         if (!username || !password || !fname || !lname) {
             setErrorMsg("You must provide a username, password, firstname, lastname");
@@ -102,8 +103,9 @@ function Register(props: IRegisterProps) {
                 id="un-registration"
                 label="myusername@revature.net"
                 type="Email"
+                onChange={updateUsername}
             />
-            onChange={updateUsername}
+            
             </>
             <TextField
                 id="fn-registration"
