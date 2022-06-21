@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { Navigate } from "react-router-dom";
 import { User } from "../models/user"
 import { DataGrid, GridColDef, GridValueGetterParams } from '@mui/x-data-grid';
+import { Cards } from "../models/cards";
 
 
 
@@ -13,14 +14,15 @@ interface IDashboardProps {
 function Dashboard(props: IDashboardProps) {
 
     const [users, setUsers] = useState([] as User[]); 
+    const [cards, setCards] = useState([] as Cards[]); 
     //const [users, setUsers] = useState<User[]>([]); // also works
     
     const columns: GridColDef[] = [
         { field: 'id', headerName: 'ID', width: 70 },
-        { field: 'role_id', headerName: 'Role ID', width: 70 },
-        { field: 'fname', headerName: 'First name', width: 130 },
-        { field: 'lname', headerName: 'Last name', width: 130 },
-        { field: 'username', headerName: 'Username', width: 260 },
+        { field: 'html_q', headerName: 'Question', width: 300 },
+        { field: 'html_a', headerName: 'Answer', width: 300},
+        // { field: 'lname', headerName: 'Last name', width: 130 },
+        // { field: 'username', headerName: 'Username', width: 260 },
       ];
 
 
@@ -30,9 +32,9 @@ function Dashboard(props: IDashboardProps) {
     //last lecture of Thursday on JSX and lifecycle
     useEffect(() => {
         console.log('the dashboard component was rendered');
-        fetch('http://localhost:5000/notecard/auth/data/users') // GET by default
+        fetch('http://localhost:5000/notecard/auth/data/cards') // GET by default
             .then(resp => resp.json())  // return keyword is implicit
-            .then(data => setUsers(data as unknown as User[]));
+            .then(data => setCards(data as unknown as Cards[]));
 
         return () => {
             console.log('the dashboard component was derendered');
@@ -45,10 +47,10 @@ function Dashboard(props: IDashboardProps) {
         // now, going to /notecard/dashboard without being logged sends user to login
         <>
             <h1>Welcome, {props.currentUser.fname}</h1>
-            <Typography variant="subtitle1">Notecard Users</Typography>
+            <Typography variant="subtitle1">Notecards</Typography>
             <div style={{ height: 400, width: '100%' }}>
                 <DataGrid
-                rows={users}
+                rows={cards}
                 columns={columns}
                 pageSize={5}
                 rowsPerPageOptions={[5]}

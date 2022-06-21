@@ -1,13 +1,13 @@
 export class Cards {
     id: number;
-    question: string;
-    answer: string;
+    html_q: string;
+    html_a: string;
 
 
 
     constructor(id: number, question: string, answer: string) {
         this.id = id;
-        this.question = question;
-        this.answer = answer;
+        this.html_q = question;
+        this.html_a = answer;
     }
 }
