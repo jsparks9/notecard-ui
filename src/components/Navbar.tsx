@@ -37,6 +37,7 @@ function Navbar(props: INavbarProps) {
                                     <ListItemText inset>
                                         <Typography variant="h6" color="inherit" onClick={() => goTo('/dashboard')}>Dashboard</Typography>
                                     </ListItemText>
+                                    
                                     <ListItemText inset>
                                         <Typography variant="h6" color="inherit" onClick={logout}>Logout</Typography>
                                     </ListItemText>
