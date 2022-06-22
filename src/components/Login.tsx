@@ -26,7 +26,7 @@ function Login(props: ILoginProps) {
         // defining state for variables used in this .tsx file
 
 
-        // Whenever the 
+        // Whenever the username field is updated, it calls this function
         let updateUsername = (e: SyntheticEvent) => {
             
             setUsername((e.target as HTMLInputElement).value);
@@ -34,9 +34,9 @@ function Login(props: ILoginProps) {
             // sets username state to that value
         }
 
-        let updatePassword = (e: SyntheticEvent) => {
+        let updatePassword = (e: SyntheticEvent) => { // same functionality as above
 
-            setPassword((e.target as HTMLInputElement).value); // same functionality as above
+            setPassword((e.target as HTMLInputElement).value); 
 
         }
         
