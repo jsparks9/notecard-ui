@@ -20,9 +20,11 @@ function Dashboard(props: IDashboardProps) {
     //const [users, setUsers] = useState<User[]>([]); // also works
     
     const cardColumns: GridColDef[] = [
-        { field: 'id', headerName: 'ID', width: 70 },
-        { field: 'html_q', headerName: 'Question', width: 300 },
-        { field: 'html_a', headerName: 'Answer', width: 300}
+
+        { field: 'id', headerName: 'ID', width: 70, headerAlign: "center", align:"center" },
+        { field: 'html_q', headerName: 'Question', width: 500, headerAlign: "center", align: "center"  },
+        { field: 'html_a', headerName: 'Answer', width: 1200, headerAlign: "center", align: "center"}
+
       ];
 
     const deckColumns: GridColDef[] = [
@@ -31,6 +33,10 @@ function Dashboard(props: IDashboardProps) {
         { field: 'deckname', headerName: 'Deck Name', width: 300},
         { field: 'numOfCards', headerName: 'Number of Cards', width: 300}
     ];
+
+    const deckOptions = [
+        {label: 'Add selected to deck: ', value: "Deck Name"}
+    ]
 
 
 
@@ -61,10 +67,17 @@ function Dashboard(props: IDashboardProps) {
         <Navigate to="/login"/> :
         // now, going to /notecard/dashboard without being logged sends user to login
         <>
-            <h1>Welcome, {props.currentUser.fname}</h1>
-            <Typography variant="subtitle1">Notecards</Typography>
-            <div style={{ height: 400, width: '100%' }}>
-                <DataGrid
+
+            <h1 style={{ color: "#374d70", fontFamily:"'Segoe UI', Tahoma, Geneva, Verdana, sans-serif", textAlign: "center"}}>Welcome, {props.currentUser.fname}</h1>
+            <Typography variant="subtitle1" className="table-name">Notecards</Typography>
+            <div id="notecardGrid">
+                <DataGrid  sx={{
+                        height: 400,
+                        boxShadow: 2,
+                        border: 2,
+                        borderColor: 'white',
+                    }}
+
                 rows={cards}
                 columns={cardColumns}
                 pageSize={5}
@@ -72,18 +85,34 @@ function Dashboard(props: IDashboardProps) {
                 checkboxSelection
                 />
             </div>
-
+            <div>
+                <button id="create-card">Create a new card</button>
+            </div>
+            <div>
+                <select id="addCardSelect">
+                    {deckOptions.map((option) => (
+                        <option value={option.value}>{option.label}</option>))}
+                    </select>
+                <button id="addCardButton">Add</button>
+            </div>        
             <br/>
 
-            <Typography variant="subtitle1">Decks</Typography>
-            <div style={{ height: 400, width: '100%' }}>
-                <DataGrid
+            <Typography variant="subtitle1" className="table-name">Decks</Typography>
+            <div id="deckGrid">
+                <DataGrid sx={{
+                        height: 400,
+                        boxShadow: 2,
+                        border: 2,
+                        borderColor: 'white',
+                    }}
+
                 rows={decks}
                 columns={deckColumns}
                 pageSize={5}
                 rowsPerPageOptions={[5]}
                 checkboxSelection
                 />
+                <br/>
             </div>
             {/* <table>
                 <thead>

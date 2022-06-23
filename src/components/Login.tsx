@@ -88,33 +88,33 @@ function Login(props: ILoginProps) {
     return ( 
     
         props.currentUser ? 
-        <Navigate to="/dashboard"/> : // If props.currentUser is set, it's truthy and so... 
-        // redirect to Dashboard
-        <> 
-            <h4>Login to Notecard</h4> {/* Show a header on page */}
-            <Box    // Material UI copy+paste to use professional rendering of the form. 
-                component="form"
-                sx = {{ '& .MuiTextField-root': { m: 1, width: '25ch' } }}
-                noValidate
-                autoComplete="off"
-            >
-                <div> {/* these div elements cause the TextField elements to render on separate lines */}
-                    <TextField
-                        id="un-login"
-                        label="myusername@revature.net"
-                        type="Email"
-                        onChange={updateUsername} 
-                        // when the input in this field changes, 
-                        // call the fct to set the "state" username
-                    />
+        <Navigate to="/dashboard"/> :
+        // show dashboard instead of this <p> tag content
+        <> <div className="img-container">
+                <div className="img-parent">               
+                    <img src="https://i.imgur.com/u7ir75v.png" className="app-logo"/>   
+                    <img src="https://i.imgur.com/Pi5dL2u.png" className="app-frame"/>
                 </div>
-                <div>
-                    <TextField
-                        id="password-registration"
-                        label="Password"
-                        type="password"
-                        autoComplete="current-password"
-                        // helperText="Password must include: "" //might include this later 
+        </div>
+            <div id="login-form">
+            <h3>Please log in</h3>
+            <input type="email" id="username" placeholder="user@Revature.net" onChange={updateUsername}></input>
+            <br/><br/>
+            <input type="password" id="login-password" placeholder="Password" onChange={updatePassword}></input>
+            <br/><br/>
+            <button id="login-button" onClick={login}>Login</button>
+            <br/><br/>
+            </div>
+            <div
+                id="error-message">
+            { errorMsg ? // ternary op
+                <ErrorMessage errorMessage = {errorMsg}></ErrorMessage>
+                : // if falsey
+                <></>
+            }</div>
+        </> // need to render it somewhere
+    )
+
 
                         onChange={updatePassword}
                         // when the input in this field changes, call the fct to set the "state" password
