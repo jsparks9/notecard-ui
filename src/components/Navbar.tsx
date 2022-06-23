@@ -1,4 +1,4 @@
-import { AppBar, css, List, ListItem, ListItemText, Toolbar, Typography } from "@mui/material";
+import { AppBar, css, IconButton, List, ListItem, ListItemText, Toolbar, Typography } from "@mui/material";
 import { Link, useNavigate } from "react-router-dom";
 import { User } from "../models/user";
 
@@ -25,35 +25,35 @@ function Navbar(props: INavbarProps) {
     }
 
     return (
-        <AppBar color="primary" position="static" style={{ background: '#42474d'}}>
+        <AppBar position="static" id="navbar">
             <Toolbar>
-                <Typography variant="h2" color="inherit">
+                <Typography>
                     <List component="nav">
                         <ListItem>
-                            <Typography variant="h4" color="inherit">Notecard</Typography>
+                            <Typography variant="h4" >Notecard</Typography>
                             {
                                 props.currentUser ? 
                                 <> 
                                     
                                     <ListItemText inset>
-                                        <Typography variant="h6" color="inherit">
+                                        <Typography variant="h6" className="menu-items">
                                             <Link to="/dashboard">Dashboard</Link>
                                             </Typography>
                                     </ListItemText>
                                     <ListItemText inset>
-                                        <Typography variant="h6" color="inherit" onClick={logout}>Logout</Typography>
+                                        <Typography variant="h6" className="menu-items" onClick={logout}>Logout</Typography>
                                     </ListItemText>
                                     
                                 </>
                                 :
                                 <>
                                     <ListItemText inset>
-                                        <Typography variant="h6" color="inherit">
+                                        <Typography variant="h6" className="menu-items">
                                             <Link to="/login">Login</Link>
                                             </Typography>
                                     </ListItemText>
                                     <ListItemText inset>
-                                        <Typography variant="h6" color="inherit">
+                                        <Typography variant="h6" className="menu-items">
                                             <Link to="/register">Register</Link>
                                         </Typography>
                                     </ListItemText>

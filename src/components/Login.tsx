@@ -86,10 +86,14 @@ function Login(props: ILoginProps) { // or any instead of {}, placeholder for no
         props.currentUser ? //<p>You're already logged in, redirecting you to Dashboard</p> : 
         <Navigate to="/dashboard"/> :
         // show dashboard instead of this <p> tag content
-        <> 
-            
+        <> <div className="img-container">
+                <div className="img-parent">               
+                    <img src="https://i.imgur.com/u7ir75v.png" className="app-logo"/>   
+                    <img src="https://i.imgur.com/Pi5dL2u.png" className="app-frame"/>
+                </div>
+        </div>
             <div id="login-form">
-            <h2>Login to Notecard</h2>
+            <h3>Please log in</h3>
             <input type="email" id="username" placeholder="user@Revature.net" onChange={updateUsername}></input>
             <br/><br/>
             <input type="password" id="login-password" placeholder="Password" onChange={updatePassword}></input>
