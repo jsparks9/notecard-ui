@@ -116,23 +116,23 @@ function Login(props: ILoginProps) {
     )
 
 
-                        onChange={updatePassword}
-                        // when the input in this field changes, call the fct to set the "state" password
-                    />
-                </div>
-                <br/>
-                <button id="login-button" onClick={login}>Login</button> {/*  Display text on button is "Login" */}
-                {/*  when clicked, calls the function "login" */}
-                <br/>
-                { errorMsg ? 
-                    // If errorMsg (a piece of state) has a message, show that message
-                    <ErrorMessage errorMessage = {errorMsg}></ErrorMessage>
-                    : 
-                    <></> // but if it is empty, derender it 
-                }
-            </Box>
-        </> 
-    );
+//                         onChange={updatePassword}
+//                         // when the input in this field changes, call the fct to set the "state" password
+//                     />
+//                 </div>
+//                 <br/>
+//                 <button id="login-button" onClick={login}>Login</button> {/*  Display text on button is "Login" */}
+//                 {/*  when clicked, calls the function "login" */}
+//                 <br/>
+//                 { errorMsg ? 
+//                     // If errorMsg (a piece of state) has a message, show that message
+//                     <ErrorMessage errorMessage = {errorMsg}></ErrorMessage>
+//                     : 
+//                     <></> // but if it is empty, derender it 
+//                 }
+//             </Box>
+//         </> 
+//     );
 }
 
 export default Login; // export so it's avaliable to App.tsx
