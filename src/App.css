@@ -99,3 +99,10 @@ a:-webkit-any-link {
     transform: rotate(360deg);
   }
 }
+
+.card {
+  text-align: center;
+  ro
+  margin-top: 5%;
+  position: relative;
+}

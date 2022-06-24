@@ -1,4 +1,4 @@
-import { SyntheticEvent, useState } from "react";
+import { KeyboardEvent, SyntheticEvent, useState } from "react";
 import { Navigate } from "react-router-dom";
 import { User } from "../models/user";
 import ErrorMessage from "./ErrorMessage";
@@ -44,6 +44,12 @@ function Login(props: ILoginProps) { // or any instead of {}, placeholder for no
             setPassword((e.target as HTMLInputElement).value);
             console.log("password is: " + password);
         }
+
+        let keydownHandler = (e: KeyboardEvent) => {
+            if (e.key === 'Enter') {
+                login(e);
+            }
+        }
         
         let login = async (e: SyntheticEvent) => {
             
@@ -57,7 +63,7 @@ function Login(props: ILoginProps) { // or any instead of {}, placeholder for no
             else {
                 setErrorMsg('');
                 try {
-                    let resp = await fetch('http://localhost:5000/notecard/auth', {
+                    let resp = await fetch('http://localhost:5001/notecard/auth', {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json'
@@ -94,9 +100,9 @@ function Login(props: ILoginProps) { // or any instead of {}, placeholder for no
         </div>
             <div id="login-form">
             <h3>Please log in</h3>
-            <input type="email" id="username" placeholder="user@Revature.net" onChange={updateUsername}></input>
+            <input type="email" id="username" placeholder="user@Revature.net" onKeyUp={keydownHandler} onChange={updateUsername}></input>
             <br/><br/>
-            <input type="password" id="login-password" placeholder="Password" onChange={updatePassword}></input>
+            <input type="password" id="login-password" placeholder="Password" onKeyUp={keydownHandler} onChange={updatePassword}></input>
             <br/><br/>
             <button id="login-button" onClick={login}>Login</button>
             <br/><br/>

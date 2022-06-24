@@ -14,7 +14,7 @@ function Navbar(props: INavbarProps) {
     // allows routing
 
     async function logout() { 
-        await fetch('http://localhost:5000/notecard/auth', {method: 'DELETE'});
+        await fetch('http://localhost:5001/notecard/auth', {method: 'DELETE'});
         props.setCurrentUser(undefined);
         navigate("/login");
 

@@ -43,7 +43,7 @@ function Dashboard(props: IDashboardProps) {
     useEffect(() => {
         console.log('the dashboard component was rendered');
 
-        fetch('http://localhost:5000/notecard/auth/data/cards') // GET by default
+        fetch('http://localhost:5001/notecard/auth/data/cards') // GET by default
             .then(resp => resp.json())  // return keyword is implicit
             .then(data => setCards(data as unknown as Cards[]));
 
@@ -61,7 +61,7 @@ function Dashboard(props: IDashboardProps) {
 
     return ( 
         !props.currentUser ? //<p>You're not logged in</p> :
-        <Navigate to="/login"/> :
+        <Navigate to="/dashboard"/> :
         // now, going to /notecard/dashboard without being logged sends user to login
         <>
             <h1 style={{ color: "#374d70", fontFamily:"'Segoe UI', Tahoma, Geneva, Verdana, sans-serif", textAlign: "center"}}>Welcome, {props.currentUser.fname}</h1>
