@@ -58,7 +58,13 @@ function Navbar(props: INavbarProps) {
                                         </Typography>
                                     </ListItemText>
                                 </>
+                                
                             }
+<ListItemText inset>
+                                    <Typography variant="h6" className="menu-items">
+                                        <Link to="/public">Basic Decks</Link>
+                                        </Typography>
+                                </ListItemText>
                         </ListItem>
                     </List>
                 </Typography>
