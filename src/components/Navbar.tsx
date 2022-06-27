@@ -40,10 +40,16 @@ function Navbar(props: INavbarProps) {
                                             <Link to="/dashboard">Dashboard</Link>
                                             </Typography>
                                     </ListItemText>
+
                                     <ListItemText inset>
                                         <Typography variant="h6" className="menu-items" onClick={logout}>Logout</Typography>
                                     </ListItemText>
-                                    
+
+                                    <ListItemText inset>
+                                        <Typography variant="h6" color="inherit" onClick={() => goTo('/adminView')}>AdminView</Typography>
+                                    </ListItemText>
+
+
                                 </>
                                 :
                                 <>
