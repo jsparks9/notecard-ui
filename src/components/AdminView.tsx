@@ -2,7 +2,7 @@ import { Box, TextField, Typography } from "@mui/material";
 import { SyntheticEvent, useEffect, useState } from "react";
 import { Navigate } from "react-router-dom";
 import { User } from "../models/user"
-import { DataGrid, GridColDef, GridValueGetterParams } from '@mui/x-data-grid';
+import { DataGrid, GridColDef } from '@mui/x-data-grid';
 import ErrorMessage from "./ErrorMessage";
 import { UserForAdminView } from "../dtos/userForAdminView";
 
@@ -121,8 +121,8 @@ function AdminView(props: IDashboardProps) {
     }, []);
 
     return ( 
-        // !props.currentUser ? //<p>You're not logged in</p> :
-        // <Navigate to="/login"/> :
+        !props.currentUser ? //<p>You're not logged in</p> :
+        <Navigate to="/login"/> :
         
         <>
             <h4>Ban user by ID or UserName</h4>
