@@ -63,8 +63,8 @@ function Dashboard(props: IDashboardProps) {
 
 
     return ( 
-        !props.currentUser ? //<p>You're not logged in</p> :
-        <Navigate to="/login"/> :
+         !props.currentUser ? //<p>You're not logged in</p> :
+         <Navigate to="/login"/> :
         // now, going to /notecard/dashboard without being logged sends user to login
         <>
 

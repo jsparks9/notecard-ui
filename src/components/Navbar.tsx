@@ -63,6 +63,8 @@ function Navbar(props: INavbarProps) {
                                             <Link to="/register">Register</Link>
                                         </Typography>
                                     </ListItemText>
+                                    
+
                                 </>
                             }
                         </ListItem>
