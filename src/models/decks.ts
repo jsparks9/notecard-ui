@@ -2,18 +2,18 @@ import { Cards } from "./cards";
 
 export class Decks {
 
-    deck_id: number;
-    owner_id: number;
-    deckname: string;
+    deckId: number;
+    ownerId: number;
+    deckName: string;
     cards: Cards[];
 
 
     constructor(deckId: number, ownerId: number, deckName: string, cards: Cards[]) {
-        this.deck_id = deckId;
-        this.owner_id = ownerId;
-        this.deckname = deckName;
+        this.deckId = deckId;
+        this.ownerId = ownerId;
+        this.deckName = deckName;
         this.cards = cards;
     }
 
 
-}
+} 

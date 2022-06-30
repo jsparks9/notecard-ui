@@ -2,6 +2,7 @@ import { Box, TextField } from "@mui/material";
 import { useState, SyntheticEvent } from "react";
 import { Navigate } from "react-router-dom";
 import { User } from "../models/user";
+// import {login} from "../Login";
 import ErrorMessage from "./ErrorMessage";
 
 interface IRegisterProps {
@@ -74,14 +75,15 @@ function Register(props: IRegisterProps) {
                 
                 if (Math.floor(resp.status/100) !== 2) {
                     setErrorMsg("Could not validate provided credentials!")
-                    let data = await resp.text();
-                    setErrorMsg(data);
+                    let data = await resp.json();
+                    setErrorMsg(data.message);
 
                 } else {
                     let data = await resp.json();
-                    props.setCurrentUser(data);
+                    props.setCurrentUser(data); 
                 }   
             } catch(err) {
+                console.log(err);
                 setErrorMsg("There was an error communicating with the API");
             } 
         }
