@@ -42,11 +42,11 @@ function Dashboard(props: IDashboardProps) {
     }, []);
 
     return ( 
-        !props.currentUser ? //<p>You're not logged in</p> :
-        <Navigate to="/login"/> :
+         !props.currentUser ? //<p>You're not logged in</p> :
+         <Navigate to="/login"/> :
         // now, going to /notecard/dashboard without being logged sends user to login
         <>
-            <h1>Welcome, {props.currentUser.fname}</h1>
+            {<h1>Welcome, {props.currentUser.fname}</h1>}
             <Typography variant="subtitle1">Notecards</Typography>
             <div style={{ height: 400, width: '100%' }}>
                 <DataGrid

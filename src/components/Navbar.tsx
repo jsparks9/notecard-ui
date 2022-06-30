@@ -54,6 +54,8 @@ function Navbar(props: INavbarProps) {
                                     <ListItemText inset>
                                         <Typography variant="h6" color="inherit" onClick={() => goTo('/register')}>Register</Typography>
                                     </ListItemText>
+                                    
+
                                 </>
                             }
                         </ListItem>
