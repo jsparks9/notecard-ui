@@ -1,5 +1,5 @@
-import { AppBar, List, ListItem, ListItemText, Toolbar, Typography } from "@mui/material";
-import { useNavigate } from "react-router-dom";
+import { AppBar, css, IconButton, List, ListItem, ListItemText, Toolbar, Typography } from "@mui/material";
+import { Link, useNavigate } from "react-router-dom";
 import { User } from "../models/user";
 
 interface INavbarProps {
@@ -25,34 +25,43 @@ function Navbar(props: INavbarProps) {
     }
 
     return (
-        <AppBar color="primary" position="static">
+        <AppBar position="static" id="navbar">
             <Toolbar>
-                <Typography variant="h5" color="inherit">
+                <Typography>
                     <List component="nav">
                         <ListItem>
-                            <Typography variant="h5" color="inherit">Notecard</Typography>
+                            <Typography variant="h4" >Notecard</Typography>
                             {
                                 props.currentUser ? 
                                 <> 
+                                    
                                     <ListItemText inset>
-                                        <Typography variant="h6" color="inherit" onClick={() => goTo('/dashboard')}>Dashboard</Typography>
+                                        <Typography variant="h6" className="menu-items">
+                                            <Link to="/dashboard">Dashboard</Link>
+                                            </Typography>
                                     </ListItemText>
 
                                     <ListItemText inset>
-                                        <Typography variant="h6" color="inherit" onClick={logout}>Logout</Typography>
+                                        <Typography variant="h6" className="menu-items" onClick={logout}>Logout</Typography>
                                     </ListItemText>
+
                                     <ListItemText inset>
                                         <Typography variant="h6" color="inherit" onClick={() => goTo('/adminView')}>AdminView</Typography>
                                     </ListItemText>
+
 
                                 </>
                                 :
                                 <>
                                     <ListItemText inset>
-                                        <Typography variant="h6" color="inherit" onClick={() => goTo('/login')}>Login</Typography>
+                                        <Typography variant="h6" className="menu-items">
+                                            <Link to="/login">Login</Link>
+                                            </Typography>
                                     </ListItemText>
                                     <ListItemText inset>
-                                        <Typography variant="h6" color="inherit" onClick={() => goTo('/register')}>Register</Typography>
+                                        <Typography variant="h6" className="menu-items">
+                                            <Link to="/register">Register</Link>
+                                        </Typography>
                                     </ListItemText>
                                     
 

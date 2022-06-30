@@ -1,36 +1,99 @@
-.App {
-  text-align: center;
+#navbar {
+  color: white;
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #42474d;
+  
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+a:-webkit-any-link {
+  text-decoration: none;
+  color: white;
+  cursor: pointer;
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
+
+.menu-items {
+  color: white;
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  cursor:pointer;
+}
+
+#login-form {
+  text-align: center;
+  width: 100%;
+  color: #374d70;
+  transform: scale(1.2);
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+#error-message {
+  text-align: center;
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+ .table-name {
+  text-align: center;
+ }
+
+ #notecardGrid, #deckGrid {
+  margin: 0 5% 0 5%;
+ }
+
+ #create-card {
+  margin-left: 5%;
+ }
+ 
+ #addCardSelect {
+  margin-left: 5%;
+ }
+
+
+.img-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, 200px);
+  justify-content: center;  
+  position: relative;
+  margin-top: 2%;
+  margin-bottom: 2%;
+}
+.img-parent {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto auto;
+
+}
+.app-logo{
+  grid-column: 1;
+  grid-row: 1 / -1;      
+  align-self: center;    
+  width: 200px;
+}
+
+.app-frame{
+  grid-column: 1;
+  grid-row: 1 / -1;
+  justify-self: center;
+  align-self: center;
+  padding-bottom: 15%;
+}
+
 
 @media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+  .app-frame {
+    animation: App-logo-spin;
+    animation-duration: 5000ms;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease-in-out;
+    animation-delay: 1000ms;
+    transform-origin:50px 40px;
   }
 }
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
+  }
+  40% {
+    transform: rotate(360deg);
   }
   to {
     transform: rotate(360deg);

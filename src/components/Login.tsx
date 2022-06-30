@@ -5,45 +5,39 @@ import { User } from "../models/user";
 import ErrorMessage from "./ErrorMessage";
 
 interface ILoginProps {
-    // fields any methods : interface is most appropriate
+    // An Interface is used here as it's most appropriate
+
 
     currentUser: User | undefined | null,  // union type
+    // the imported User class
 
-    // update function
+    // A function that takes User type as input and outputs nothing
     setCurrentUser: (nextUser: User) => void
 }
 
 
-function Login(props: ILoginProps) { // or any instead of {}, placeholder for now
-    // can't have 2 top-level element
-    // can put two divs in a fragment
+function Login(props: ILoginProps) { 
+    // We specify that this takes input that has to be in the form of ILoginProps
 
-        // use destructuring assignment
-        const [username, setUsername] = useState(''); // let allows reassignment
-        const [password, setPassword] = useState(''); // const restricts that ^
-        const [errorMsg, setErrorMsg] = useState<string>(); // same as ^, but using TS-provided generics
-        //const [authUser, setAuthUser] = useState(undefined as unknown as User);
-        
-        // this state is effectively immutable 
-        // so, cannot update directly like 
-            // let username = 'something';
-        // must instead use setters
+        // The "const [var1, var2]" is a destructuring assignment
+        const [username, setUsername] = useState(''); 
+        const [password, setPassword] = useState(''); 
+        const [errorMsg, setErrorMsg] = useState<string>();
+        // defining state for variables used in this .tsx file
 
-        // let username = '';
-        // let password = '';
 
+        // Whenever the username field is updated, it calls this function
         let updateUsername = (e: SyntheticEvent) => {
-            console.log('username field updated');
-            //let username = (e.target as HTMLInputElement).value;
+            
             setUsername((e.target as HTMLInputElement).value);
-            console.log("username is: " + username);
+            // finds the element that called this function and takes its text
+            // sets username state to that value
         }
 
-        let updatePassword = (e: SyntheticEvent) => {
-            console.log('password field updated');
-            //let password = (e.target as HTMLInputElement).value;
-            setPassword((e.target as HTMLInputElement).value);
-            console.log("password is: " + password);
+        let updatePassword = (e: SyntheticEvent) => { // same functionality as above
+
+            setPassword((e.target as HTMLInputElement).value); 
+
         }
         
         let login = async (e: SyntheticEvent) => {
@@ -52,84 +46,93 @@ function Login(props: ILoginProps) { // or any instead of {}, placeholder for no
             // like if you use form, prevent it from sending a GET request with params
             // because we want to control what the button does.
 
-            if (!username || !password) {
-                setErrorMsg("You must provide a username and password");
-            }
-            else {
-                setErrorMsg('');
-                try {
-                    let resp = await fetch('http://localhost:5000/notecard/auth', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json'
-                        },
-                        body: JSON.stringify({username, password})
-                    });
-                    
-                    if (Math.floor(resp.status/100) !== 2) {
-                        setErrorMsg("Could not validate provided credentials!")
-                        let data = await resp.text();
-                        setErrorMsg(data);
 
-                    } else {
-                        let data = await resp.json();
-                        props.setCurrentUser(data);
+            if (!username || !password) { // If any input field is blank,
+                setErrorMsg("This webpage says: the username or passowrd field was empty"); 
+            } // if either field was blank, server won't be contacted
+            else {
+                setErrorMsg(''); // remove any error currently displayed
+                try {
+                    // await means that "resp" varaible is the response, rather than a promise
+                    let resp = await fetch('http://localhost:5000/notecard/auth', // API endpoint
+                        {
+                            method: 'POST', 
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify({username, password})
+                            // packages up the username and password like this: 
+                            /*
+                            {
+                                "username": "whatever the user entered @revature.net",
+                                "password": "whatever the user entered"
+                            }
+                            
+                            */
+                        }
+                    );
+                    // The server has sent back a response code... 
+                    if (Math.floor(resp.status/100) !== 2) { // if that code is not a 200, 204, 2-whatever
+                        setErrorMsg("Could not validate provided credentials!"); //  
+                        let data = await resp.text(); // The database sends errors in text format
+                        setErrorMsg(data);            // that text is displayed
+
+                    } else { // this is ran if the response code is a 200, 204, 2-anything
+                        let data = await resp.json(); // waits for the response data and stores it as data
+                        props.setCurrentUser(data);   // the response JSON has the keys identical to User object fields
+                        // so, props.setCurrentUser sets the authUser in the App.tsx as the User data the DB sent back
                     }   
-                } catch(err) {
+                } catch(err) { // This will run in situations like the API was not running
                     setErrorMsg("There was an error communicating with the API");
                 } 
             }
         }
-        console.log("Try #2");
-        console.log(props.currentUser);
-    return ( // this is a fragment
+    return ( 
     
-        props.currentUser ? //<p>You're already logged in, redirecting you to Dashboard</p> : 
+        props.currentUser ? 
         <Navigate to="/dashboard"/> :
         // show dashboard instead of this <p> tag content
-        <> 
-            <h4>Login to Notecard</h4>
-            <Box
-            component="form"
-            sx={{
-            '& .MuiTextField-root': { m: 1, width: '25ch' },
-            }}
-            noValidate
-            autoComplete="off"
-            >
-                <div>
-                    <TextField
-                        id="un-registration"
-                        label="myusername@revature.net"
-                        type="Email"
-                        onChange={updateUsername}
-                    />
+        <> <div className="img-container">
+                <div className="img-parent">               
+                    <img src="https://i.imgur.com/u7ir75v.png" className="app-logo"/>   
+                    <img src="https://i.imgur.com/Pi5dL2u.png" className="app-frame"/>
                 </div>
-                <div>
-                    <TextField
-                        id="password-registration"
-                        label="Password"
-                        type="password"
-                        autoComplete="current-password"
-                        //helperText="Password must include: "
-                        onChange={updatePassword}
-                    />
-                </div>
-                <br/>
-                <button id="login-button" onClick={login}>Login</button>
-                <br/>
-                { errorMsg ? // ternary op
-                    // <div>
-                    //     <p className="alert">{errorMsg}</p>
-                    // </div>
-                    <ErrorMessage errorMessage = {errorMsg}></ErrorMessage>
-                    : // if falsey
-                    <></>
-                }
-            </Box>
-        </> 
-    );
+        </div>
+            <div id="login-form">
+            <h3>Please log in</h3>
+            <input type="email" id="username" placeholder="user@Revature.net" onChange={updateUsername}></input>
+            <br/><br/>
+            <input type="password" id="login-password" placeholder="Password" onChange={updatePassword}></input>
+            <br/><br/>
+            <button id="login-button" onClick={login}>Login</button>
+            <br/><br/>
+            </div>
+            <div
+                id="error-message">
+            { errorMsg ? // ternary op
+                <ErrorMessage errorMessage = {errorMsg}></ErrorMessage>
+                : // if falsey
+                <></>
+            }</div>
+        </> // need to render it somewhere
+    )
 
+
+//                         onChange={updatePassword}
+//                         // when the input in this field changes, call the fct to set the "state" password
+//                     />
+//                 </div>
+//                 <br/>
+//                 <button id="login-button" onClick={login}>Login</button> {/*  Display text on button is "Login" */}
+//                 {/*  when clicked, calls the function "login" */}
+//                 <br/>
+//                 { errorMsg ? 
+//                     // If errorMsg (a piece of state) has a message, show that message
+//                     <ErrorMessage errorMessage = {errorMsg}></ErrorMessage>
+//                     : 
+//                     <></> // but if it is empty, derender it 
+//                 }
+//             </Box>
+//         </> 
+//     );
 }
 
-export default Login;
+export default Login; // export so it's avaliable to App.tsx

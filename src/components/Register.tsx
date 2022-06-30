@@ -64,7 +64,7 @@ function Register(props: IRegisterProps) {
         else {
             setErrorMsg('');
             try {
-                let resp = await fetch('http://localhost:5000/notecard/auth', {
+                let resp = await fetch('http://localhost:5000/notecard/auth/register', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
