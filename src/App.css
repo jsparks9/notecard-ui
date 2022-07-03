@@ -3,7 +3,17 @@
   font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   background-color: rgb(25,118,210);
   cursor: pointer;
+  z-index: 100;
+  position: fixed;
+  opacity: 0.8;
   
+}
+
+
+#placeholder {
+  z-index: 0;
+  position: float;
+  opacity: 0;
   
 }
 

@@ -24,7 +24,7 @@ function Navbar(props: INavbarProps) {
         navigate(route);
     }
 
-    return (
+    return (<>
         <AppBar position="static" id="navbar">
             <Toolbar>
                 <Typography>
@@ -34,7 +34,6 @@ function Navbar(props: INavbarProps) {
                             {
                                 props.currentUser ? 
                                 <> 
-                                    
                                     <ListItemText inset>
                                         <Typography variant="h6" className="menu-items">
                                             <Link to="/dashboard">Dashboard</Link>
@@ -52,8 +51,6 @@ function Navbar(props: INavbarProps) {
                                             <Link to="/adminView">AdminView</Link>
                                         </Typography>
                                     </ListItemText>
-
-
                                 </>
                                 :
                                 <>
@@ -67,8 +64,6 @@ function Navbar(props: INavbarProps) {
                                             <Link to="/register">Register</Link>
                                         </Typography>
                                     </ListItemText>
-                                    
-
                                 </>
                             }
                         </ListItem>
@@ -76,8 +71,10 @@ function Navbar(props: INavbarProps) {
                 </Typography>
             </Toolbar>
         </AppBar>
-    )
-
+        <AppBar position="static" id="placeholder">
+            <Toolbar></Toolbar>
+        </AppBar>
+    </>)
 }
 
 export default Navbar;
