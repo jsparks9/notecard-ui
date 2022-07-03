@@ -18,47 +18,25 @@ function AdminView(props: IDashboardProps) {
     const [errorMsg, setErrorMsg] = useState<string>();
     const [username, setUsername] = useState<string>();
     const [role, setRole] = useState<string>();
-    // Need STATE for ban var
     
     let updateBan = (e: SyntheticEvent) => {
-        console.log('ban field updated');
         setUsername((e.target as HTMLInputElement).value);
-        console.log("username outside useEffect is : " + setUsername); // doesn't work as expected
-        console.log("Setting username");
-        // want to update the BAN variable
-        //setUsername((e.target as HTMLInputElement).value);
-
     }
 
     let updateRole = (e: SyntheticEvent) => {
-        console.log('role updated');
         setRole((e.target as HTMLInputElement).value);
-        
-       
-
     }
 
-    
-    useEffect(() => {
-        setErrorMsg('');
-    }, [username, role])
-
-    useEffect(() => {
-        console.log("username is now " + username) // works as expected
-    }, [username])
+    useEffect(() => { setErrorMsg(''); }, [username, role])
 
     let UpdateUser = async (e: SyntheticEvent) => {
         e.preventDefault();
-        console.log('Update Button clicked. username to update is: '+username + " and role is: " + role);
-        //let username = (e.target as HTMLInputElement).value;
-        // make a fetch call to the DELETE user endpoint (DELETE request to /users) 
-        // with the username that needs to be removed from the DB
-      
-        setErrorMsg('');
+        
         if (!username || !role) {
             setErrorMsg('Username and role required');
             return;
         }
+        setErrorMsg('');
         try {
             let resp = await fetch('http://notecardapi-env.eba-psis3xqw.us-east-1.elasticbeanstalk.com/notecard/adminview/setrole', { // endpoint in API that receives DELETE requests
                 method: 'POST',
@@ -116,11 +94,11 @@ function AdminView(props: IDashboardProps) {
     }, []);
 
     return ( 
-        !props.currentUser ? //<p>You're not logged in</p> :
+        !props.currentUser ? 
         <Navigate to="/login"/> :
         
         <>            
-            <h4 style={{ color: "#374d70", fontFamily:"'Segoe UI', Tahoma, Geneva, Verdana, sans-serif", textAlign: "left"}}>Ban user by ID or UserName</h4>
+            {/* <h4 style={{ color: "#374d70", fontFamily:"'Segoe UI', Tahoma, Geneva, Verdana, sans-serif", textAlign: "left"}}>Update user by ID or UserName</h4> */}
             <Box
             component="form"
             sx={{
