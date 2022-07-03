@@ -1,4 +1,4 @@
-import { AppBar, css, IconButton, List, ListItem, ListItemText, Toolbar, Typography } from "@mui/material";
+import { AppBar, List, ListItem, ListItemText, Toolbar, Typography } from "@mui/material";
 import { Link, useNavigate } from "react-router-dom";
 import { User } from "../models/user";
 
@@ -20,9 +20,7 @@ function Navbar(props: INavbarProps) {
 
     }
 
-    function goTo(route: string) {
-        navigate(route);
-    }
+    // function goTo(route: string) { navigate(route); }
 
     return (<>
         <AppBar position="static" id="navbar">
@@ -46,7 +44,7 @@ function Navbar(props: INavbarProps) {
                                         </Typography>
                                     </ListItemText>
 
-                                    {props.currentUser.authUserRole == "ADMIN" ?
+                                    {props.currentUser.authUserRole === "ADMIN" ?
                                     <ListItemText inset>
                                     <Typography variant="h6" className="menu-items">
                                         <Link to="/adminView">AdminView</Link>

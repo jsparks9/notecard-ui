@@ -1,6 +1,6 @@
 import { Box, TextField } from "@mui/material";
 import Button from '@mui/material/Button';
-import { SyntheticEvent, useEffect, useState } from "react";
+import { SyntheticEvent, useState } from "react";
 import { Navigate } from "react-router-dom";
 import { User } from "../models/user";
 import ErrorMessage from "./ErrorMessage";
@@ -95,8 +95,8 @@ function Login(props: ILoginProps) {
         // show dashboard instead of this <p> tag content
         <> <div className="img-container">
                 <div className="img-parent">               
-                    <img src="https://i.imgur.com/u7ir75v.png" className="app-logo"/>   
-                    <img src="https://i.imgur.com/Pi5dL2u.png" className="app-frame"/>
+                    <img src="https://i.imgur.com/u7ir75v.png" alt="logo" className="app-logo"/>   
+                    <img src="https://i.imgur.com/Pi5dL2u.png" alt="card" className="app-frame"/>
                 </div>
         </div>
         <Box

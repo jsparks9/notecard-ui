@@ -47,26 +47,10 @@ function AdminView(props: IDashboardProps) {
         console.log("username is now " + username) // works as expected
     }, [username])
 
-    let ProcessBanButtonClick = (e: SyntheticEvent) => {
-        console.log( "Update button was clicked");
-        e.preventDefault(); // prevent default event logic from running
-            // like if you use form, prevent it from sending a GET request with params
-            // because we want to control what the button does.
-
-        // Send DELETE request
-
-
-        
-    }
-   
-
-
     let UpdateUser = async (e: SyntheticEvent) => {
         e.preventDefault();
         console.log('Update Button clicked. username to update is: '+username + " and role is: " + role);
         //let username = (e.target as HTMLInputElement).value;
-        let usernameForDeletion1 = (e.target as HTMLInputElement).value; // Instead of local var, let's use State
-        
         // make a fetch call to the DELETE user endpoint (DELETE request to /users) 
         // with the username that needs to be removed from the DB
       
@@ -96,7 +80,8 @@ function AdminView(props: IDashboardProps) {
                 setErrorMsg("User was successfully updated!");
             } else {
                 let data = await resp.json();
-                setErrorMsg("Resp code was 200-something but not a 204???"); // shouldn't show
+                //setErrorMsg("Resp code was 200-something but not a 204???"); // shouldn't show
+                setErrorMsg(data.message);
                 
             }   
         } catch(err) {
@@ -115,13 +100,13 @@ function AdminView(props: IDashboardProps) {
 
 
       function refreshUserList() {
-        fetch('http://notecardapi-env.eba-psis3xqw.us-east-1.elasticbeanstalk.com'+'/notecard/adminview', {
+        fetch('http://notecardapi-env.eba-psis3xqw.us-east-1.elasticbeanstalk.com/notecard/adminview', {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
                 'Authentication' : 'EmptyTokenForNow'
             }
-        }) .then(resp => resp.json())  // return keyword is implicit
+        }).then(resp => resp.json())  // return keyword is implicit
         .then(data => setUsers(data))
       }
 
