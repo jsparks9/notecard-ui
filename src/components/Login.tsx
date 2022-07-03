@@ -55,7 +55,7 @@ function Login(props: ILoginProps) {
             else {
                 setErrorMsg(''); // remove any error currently displayed
                 try {
-                    // await means that "resp" varaible is the response, rather than a promise
+                    // await means that "resp" variable is the response, rather than a promise
                     let resp = await fetch('http://notecardapi-env.eba-psis3xqw.us-east-1.elasticbeanstalk.com'+
                                            '/notecard/auth/login', // API endpoint
                         {

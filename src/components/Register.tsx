@@ -65,7 +65,7 @@ function Register(props: IRegisterProps) {
         else {
             setErrorMsg('');
             try {
-                let resp = await fetch('http://localhost:5000/notecard/auth/register', {
+                let resp = await fetch('http://notecardapi-env.eba-psis3xqw.us-east-1.elasticbeanstalk.com'+'/notecard/auth/register', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
@@ -95,7 +95,7 @@ function Register(props: IRegisterProps) {
         // show dashboard instead of this <p> tag content
 
     <>
-        
+        <></>
         <Box
             id="registration-form"
             component="form"
