@@ -1,7 +1,9 @@
 #navbar {
   color: white;
   font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background-color: #42474d;
+  background-color: rgb(25,118,210);
+  cursor: pointer;
+  
   
 }
 
@@ -18,7 +20,7 @@ a:-webkit-any-link {
   cursor:pointer;
 }
 
-#login-form {
+#login-form, #registration-form {
   text-align: center;
   width: 100%;
   color: #374d70;

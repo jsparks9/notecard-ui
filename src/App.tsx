@@ -9,8 +9,9 @@ import Register from './components/Register';
 import AdminView from './components/AdminView';
 
 function App() {
-
+  
   const [authUser, setAuthUser] = useState<User>(); // undefined as unknown as User
+  const [token, setToken] = useState<string>();
 
   return (
     <>
@@ -22,13 +23,6 @@ function App() {
         <Route path='/register'  element={<Register currentUser={authUser} setCurrentUser={setAuthUser}/>}/>
       </Routes>
     </>
-
-    // <>
-    //   <Login currentUser={authUser} setCurrentUser={setAuthUser}/>
-    //   {
-    //     authUser ? <p>Logged you in, {authUser.fname}</p> : <></>
-    //   }
-    // </>
   );
 }
 

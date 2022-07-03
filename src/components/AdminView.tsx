@@ -1,4 +1,5 @@
 import { Box, TextField, Typography } from "@mui/material";
+import Button from '@mui/material/Button';
 import { SyntheticEvent, useEffect, useState } from "react";
 import { Navigate } from "react-router-dom";
 import { User } from "../models/user"
@@ -37,6 +38,11 @@ function AdminView(props: IDashboardProps) {
 
     }
 
+    
+    useEffect(() => {
+        setErrorMsg('');
+    }, [username, role])
+
     useEffect(() => {
         console.log("username is now " + username) // works as expected
     }, [username])
@@ -65,8 +71,12 @@ function AdminView(props: IDashboardProps) {
         // with the username that needs to be removed from the DB
       
         setErrorMsg('');
+        if (!username || !role) {
+            setErrorMsg('Username and role required');
+            return;
+        }
         try {
-            let resp = await fetch('http://localhost:5000/notecard/adminview/setrole', { // endpoint in API that receives DELETE requests
+            let resp = await fetch('http://notecardapi-env.eba-psis3xqw.us-east-1.elasticbeanstalk.com/notecard/adminview/setrole', { // endpoint in API that receives DELETE requests
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -105,7 +115,7 @@ function AdminView(props: IDashboardProps) {
 
 
       function refreshUserList() {
-        fetch('http://localhost:5000/notecard/adminview', {
+        fetch('http://notecardapi-env.eba-psis3xqw.us-east-1.elasticbeanstalk.com'+'/notecard/adminview', {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -124,8 +134,8 @@ function AdminView(props: IDashboardProps) {
         !props.currentUser ? //<p>You're not logged in</p> :
         <Navigate to="/login"/> :
         
-        <>
-            <h4>Ban user by ID or UserName</h4>
+        <>            
+            <h4 style={{ color: "#374d70", fontFamily:"'Segoe UI', Tahoma, Geneva, Verdana, sans-serif", textAlign: "left"}}>Ban user by ID or UserName</h4>
             <Box
             component="form"
             sx={{
@@ -150,24 +160,23 @@ function AdminView(props: IDashboardProps) {
                 </div>
                 
                 <br/>
-                <button id="ban-button" onClick={UpdateUser} 
-                >Update</button>
-                <br/>
+                <Button id="ban-button" onClick={UpdateUser} variant="contained">Update</Button>
+                
                 { errorMsg ? // ternary op
-                    // <div>
-                    //     <p className="alert">{errorMsg}</p>
-                    // </div>
                     <ErrorMessage errorMessage = {errorMsg}></ErrorMessage>
-                    : // if falsey
-                    <></>
+                    : 
+                    <><br/><br/></>
                 }
             </Box>
 
 
             {/* <h1>Welcome, {props.currentUser.fname}</h1> */}
-            <Typography variant="subtitle1">Notecard Users</Typography>
+            <Typography variant="subtitle1" style={{ color: "#374d70", fontFamily:"'Segoe UI', Tahoma, Geneva, Verdana, sans-serif", fontWeight:600}}>Notecard Users</Typography>
             <div style={{ height: 400, width: '100%' }}>
                 <DataGrid
+                    style={{ color: "#374d70", 
+                        fontFamily:"'Segoe UI', Tahoma, Geneva, Verdana, sans-serif", textAlign: "left"
+                    }}
                     rows={users}
                     columns={columns}
                     pageSize={5}

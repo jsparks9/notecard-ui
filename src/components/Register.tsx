@@ -1,4 +1,5 @@
 import { Box, TextField } from "@mui/material";
+import Button from '@mui/material/Button';
 import { useState, SyntheticEvent } from "react";
 import { Navigate } from "react-router-dom";
 import { User } from "../models/user";
@@ -58,8 +59,8 @@ function Register(props: IRegisterProps) {
         // because we want to control what the button does.
 
 
-        if (!username || !password || !fname || !lname) {
-            setErrorMsg("You must provide a username, password, firstname, lastname");
+        if (!username || !password) {
+            setErrorMsg("Username and password required");
         }
         else {
             setErrorMsg('');
@@ -94,8 +95,9 @@ function Register(props: IRegisterProps) {
         // show dashboard instead of this <p> tag content
 
     <>
-        <h4>Please enter registration details</h4>
+        
         <Box
+            id="registration-form"
             component="form"
             sx={{
             '& .MuiTextField-root': { m: 1, width: '25ch' },
@@ -103,11 +105,12 @@ function Register(props: IRegisterProps) {
             noValidate
             autoComplete="off"
         >
+            <br/><br/>
             <div>
                 <div>
                     <TextField
                         id="un-registration"
-                        label="myusername@revature.net"
+                        label="username@revature.net"
                         type="Email"
                         onChange={updateUsername}
                     />
@@ -142,19 +145,15 @@ function Register(props: IRegisterProps) {
                         onChange={updatePassword}
                     />
                 </div>
+                { errorMsg ? // ternary op
+                                <ErrorMessage errorMessage = {errorMsg}></ErrorMessage>
+                                : // if falsey
+                                <><br/></>
+                }
 
-                <br/>
-                <button id="register-button" onClick={register}>Register</button>
-                <br/>
+                <Button id="register-button" onClick={register} variant="contained">Register</Button>
+                <br/><br/><br/>
             </div>
-            { errorMsg ? // ternary op
-                // <div>
-                //     <p className="alert">{errorMsg}</p>
-                // </div>
-                <ErrorMessage errorMessage = {errorMsg}></ErrorMessage>
-                : // if falsey
-                <></>
-            }
         </Box>
       </>);
 }

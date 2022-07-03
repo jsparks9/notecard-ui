@@ -1,5 +1,6 @@
 import { Box, TextField } from "@mui/material";
-import { SyntheticEvent, useState } from "react";
+import Button from '@mui/material/Button';
+import { SyntheticEvent, useEffect, useState } from "react";
 import { Navigate } from "react-router-dom";
 import { User } from "../models/user";
 import ErrorMessage from "./ErrorMessage";
@@ -24,6 +25,7 @@ function Login(props: ILoginProps) {
         const [password, setPassword] = useState(''); 
         const [errorMsg, setErrorMsg] = useState<string>();
         // defining state for variables used in this .tsx file
+        
 
 
         // Whenever the username field is updated, it calls this function
@@ -48,13 +50,14 @@ function Login(props: ILoginProps) {
 
 
             if (!username || !password) { // If any input field is blank,
-                setErrorMsg("This webpage says: the username or passowrd field was empty"); 
+                setErrorMsg("Username and password required");
             } // if either field was blank, server won't be contacted
             else {
                 setErrorMsg(''); // remove any error currently displayed
                 try {
                     // await means that "resp" varaible is the response, rather than a promise
-                    let resp = await fetch('http://localhost:5000/notecard/auth', // API endpoint
+                    let resp = await fetch('http://notecardapi-env.eba-psis3xqw.us-east-1.elasticbeanstalk.com'+
+                                           '/notecard/auth/login', // API endpoint
                         {
                             method: 'POST', 
                             headers: { 'Content-Type': 'application/json' },
@@ -96,43 +99,66 @@ function Login(props: ILoginProps) {
                     <img src="https://i.imgur.com/Pi5dL2u.png" className="app-frame"/>
                 </div>
         </div>
-            <div id="login-form">
-            <h3>Please log in</h3>
-            <input type="email" id="username" placeholder="user@Revature.net" onChange={updateUsername}></input>
-            <br/><br/>
-            <input type="password" id="login-password" placeholder="Password" onChange={updatePassword}></input>
-            <br/><br/>
-            <button id="login-button" onClick={login}>Login</button>
-            <br/><br/>
+        <Box
+            id="login-form"
+            component="form"
+            sx={{
+            '& .MuiTextField-root': { m: 1, width: '25ch' },
+            }}
+            noValidate
+            autoComplete="off"
+        >
+            <br/>
+            <div>
+                <div>
+                    <TextField
+                        id="un-login"
+                        label="username@revature.net"
+                        type="Email"
+                        onChange={updateUsername}
+                    />
+                </div>
+                <div>
+                    <TextField
+                        id="pw-login"
+                        label="Password"
+                        type="password"
+                        autoComplete="current-password"
+                        //helperText="Password must include: "
+                        onChange={updatePassword}
+                    />
+                </div>
+
+                { errorMsg ? // ternary op
+                                <ErrorMessage errorMessage = {errorMsg}></ErrorMessage>
+                                : // if falsey
+                                <><br/></>
+                }
+                <Button id="login-button" onClick={login} variant="contained">Login</Button>
+                <br/><br/><br/>
             </div>
-            <div
-                id="error-message">
-            { errorMsg ? // ternary op
-                <ErrorMessage errorMessage = {errorMsg}></ErrorMessage>
-                : // if falsey
-                <></>
-            }</div>
+        </Box>
+
+{/* 
+        <div id="login-form">
+        <h3>Please log in</h3>
+        <input type="email" id="username" placeholder="user@Revature.net" onChange={updateUsername}></input>
+        <br/><br/>
+        <input type="password" id="login-password" placeholder="Password" onChange={updatePassword}></input>
+        <br/><br/>
+        <button id="login-button" onClick={login}>Login</button>
+        <br/><br/>
+        </div>
+        <div
+            id="error-message">
+        { errorMsg ? // ternary op
+            <ErrorMessage errorMessage = {errorMsg}></ErrorMessage>
+            : // if falsey
+            <></>
+        }</div>
+         */}
         </> // need to render it somewhere
     )
-
-
-//                         onChange={updatePassword}
-//                         // when the input in this field changes, call the fct to set the "state" password
-//                     />
-//                 </div>
-//                 <br/>
-//                 <button id="login-button" onClick={login}>Login</button> {/*  Display text on button is "Login" */}
-//                 {/*  when clicked, calls the function "login" */}
-//                 <br/>
-//                 { errorMsg ? 
-//                     // If errorMsg (a piece of state) has a message, show that message
-//                     <ErrorMessage errorMessage = {errorMsg}></ErrorMessage>
-//                     : 
-//                     <></> // but if it is empty, derender it 
-//                 }
-//             </Box>
-//         </> 
-//     );
 }
 
 export default Login; // export so it's avaliable to App.tsx

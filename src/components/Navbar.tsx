@@ -14,7 +14,7 @@ function Navbar(props: INavbarProps) {
     // allows routing
 
     async function logout() { 
-        await fetch('http://localhost:5000/notecard/auth', {method: 'DELETE'});
+        //await fetch('http://localhost:5000/notecard/auth', {method: 'DELETE'});
         props.setCurrentUser(undefined);
         navigate("/login");
 
@@ -38,15 +38,19 @@ function Navbar(props: INavbarProps) {
                                     <ListItemText inset>
                                         <Typography variant="h6" className="menu-items">
                                             <Link to="/dashboard">Dashboard</Link>
-                                            </Typography>
+                                        </Typography>
+                                    </ListItemText>
+
+                                    <ListItemText inset >
+                                        <Typography variant="h6" className="menu-items" onClick={logout}>
+                                            <Link to="/login">Logout</Link>
+                                        </Typography>
                                     </ListItemText>
 
                                     <ListItemText inset>
-                                        <Typography variant="h6" className="menu-items" onClick={logout}>Logout</Typography>
-                                    </ListItemText>
-
-                                    <ListItemText inset>
-                                        <Typography variant="h6" color="inherit" onClick={() => goTo('/adminView')}>AdminView</Typography>
+                                        <Typography variant="h6" className="menu-items">
+                                            <Link to="/adminView">AdminView</Link>
+                                        </Typography>
                                     </ListItemText>
 
 
@@ -56,7 +60,7 @@ function Navbar(props: INavbarProps) {
                                     <ListItemText inset>
                                         <Typography variant="h6" className="menu-items">
                                             <Link to="/login">Login</Link>
-                                            </Typography>
+                                        </Typography>
                                     </ListItemText>
                                     <ListItemText inset>
                                         <Typography variant="h6" className="menu-items">
