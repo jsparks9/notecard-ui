@@ -60,7 +60,7 @@ function Dashboard(props: IDashboardProps) {
         }
     }, []);
 
-
+    console.log(props.currentUser);
 
     return ( 
          !props.currentUser ? 

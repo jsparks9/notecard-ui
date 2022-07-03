@@ -1,17 +1,11 @@
 export class User {
-    id: number;
-    role_id: number;
-    username: string;
-    fname: string;
-    lname: string;
-    password: string;
+    authUserId: number;
+    authUserRole: string;
+    authUsername: string;
 
-    constructor(id: number, rid: number, un: string, fn: string, ln: string, pw: string) {
-        this.id = id;
-        this.role_id = rid;
-        this.username = un;
-        this.fname = fn;
-        this.lname = ln;
-        this.password = pw;
+    constructor(id: number, r: string, un: string) {
+        this.authUserId = id;
+        this.authUserRole = r;
+        this.authUsername = un;
     }
 }

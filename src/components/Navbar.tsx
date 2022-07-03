@@ -46,11 +46,12 @@ function Navbar(props: INavbarProps) {
                                         </Typography>
                                     </ListItemText>
 
+                                    {props.currentUser.authUserRole == "ADMIN" ?
                                     <ListItemText inset>
-                                        <Typography variant="h6" className="menu-items">
-                                            <Link to="/adminView">AdminView</Link>
-                                        </Typography>
-                                    </ListItemText>
+                                    <Typography variant="h6" className="menu-items">
+                                        <Link to="/adminView">AdminView</Link>
+                                    </Typography>
+                                </ListItemText>:<></>}
                                 </>
                                 :
                                 <>
