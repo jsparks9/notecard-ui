@@ -18,7 +18,7 @@ function DeckView() {
 
     useEffect(() => {
 
-        fetch('http://localhost:5000/notecard/deck/view') // GET by default
+        fetch('http://notecardapi-env.eba-psis3xqw.us-east-1.elasticbeanstalk.com/notecard/deck/view') // GET by default
             .then(resp => resp.json())  // return keyword is implicit
             .then(data => setDecks(data as unknown as deckForDeckView[]));
         return () => {
