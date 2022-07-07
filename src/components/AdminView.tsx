@@ -137,17 +137,16 @@ function AdminView(props: IDashboardProps) {
                     onChange={updateRole}
                 />
                 </div>
-                
-                <br/>
-                <Button id="ban-button" onClick={UpdateUser} variant="contained" sx={{background: "#263238", marginLeft: "11%"}}>Update</Button>
-                
                 { errorMsg ? // ternary op
                     <div className="adminError">
                     <ErrorMessage errorMessage = {errorMsg}></ErrorMessage>
                     </div>
                     : 
-                    <><br/><br/></>
+                    <><br/></>
                 }
+                <Button id="ban-button" onClick={UpdateUser} variant="contained" sx={{background: "#263238", marginLeft: "11%"}}>Update</Button>
+                
+                
             </Box>
         </>
     )
