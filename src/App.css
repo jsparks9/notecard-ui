@@ -40,7 +40,7 @@ a:-webkit-any-link {
  }
 
 
- #create-card, #addCardSelect, .cardField {
+ #create-card, #addCardSelect, .cardField, .deckField {
   margin-left: 5%;
  }
  

@@ -1,8 +1,12 @@
-import { useEffect, useState } from "react";
+import { SyntheticEvent, useEffect, useState } from "react";
 import { Cards } from "../models/cards";
 
+interface IFlashcardProps {
+    currentSelection: string | undefined | null,
+    setCurrentSelection: (nextSelection: string) => void
+}
 
-function Flashcard() {
+function Flashcard(props: IFlashcardProps) {
     
     let cardQ: string[];
     cardQ = [];
@@ -10,13 +14,10 @@ function Flashcard() {
     cardA = []
     const [cards, setCards] = useState([] as Cards[]);
     
-    
-    
-
 
     useEffect(() => {
         console.log('the dashboard component was rendered');
-
+        //TODO: Change to post and use IFlashcardProps to receive which deck to render
         fetch('http://localhost:5001/notecard/card/all') // GET by default
             .then(resp => resp.json())  // return keyword is implicit
             .then(data => setCards(data as unknown as Cards[]));
@@ -52,6 +53,7 @@ function Flashcard() {
                     <p>{cardA[semiRandom]}</p>
                 </div>
             </div>
+            
         </>
 
 

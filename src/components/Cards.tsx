@@ -67,14 +67,20 @@ function CardView() {
                     <div className="cardField">
                         <TextField
                             id="cardSelect"
-                            label="Selected Card"
+                            label="Selected Card ID"
+                            type="text"
+                            onChange={UpdateSelection}
+                        />
+                        <TextField
+                            id="deckSelect"
+                            label="Desired Deck ID"
                             type="text"
                             onChange={UpdateSelection}
                         />
                     </div>
                     <br/>
                     <Button id="addToDeckButton" onClick={AddToDeck} variant="contained" sx={{background: "#263238", marginLeft: "5%"}}>Add Card to Deck</Button>
-                    {/* <Button id="addToDeckButton" onClick={AddToDeck} variant="contained" sx={{background: "#263238", marginLeft: ".5%"}}>View Card</Button> */}
+                    
                 </Box>
 
 
