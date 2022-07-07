@@ -37,6 +37,25 @@ function Navbar(props: INavbarProps) {
                                             <Link to="/dashboard">Dashboard</Link>
                                         </Typography>
                                     </ListItemText>
+                                    
+                                    {props.currentUser.authUserRole === "ADMIN" ?
+                                    <ListItemText inset>
+                                        <Typography variant="h6" className="menu-items">
+                                            <Link to="/adminView">Admin</Link>
+                                        </Typography>
+                                    </ListItemText>:<></>}
+
+                                    <ListItemText inset>
+                                        <Typography variant="h6" className="menu-items">
+                                            <Link to="/decks">Decks</Link>
+                                        </Typography>
+                                    </ListItemText>
+
+                                    <ListItemText inset>
+                                        <Typography variant="h6" className="menu-items">
+                                            <Link to="/createCard">Create Card</Link>
+                                        </Typography>
+                                    </ListItemText>
 
                                     <ListItemText inset >
                                         <Typography variant="h6" className="menu-items" onClick={logout}>
@@ -44,12 +63,6 @@ function Navbar(props: INavbarProps) {
                                         </Typography>
                                     </ListItemText>
 
-                                    {props.currentUser.authUserRole === "ADMIN" ?
-                                    <ListItemText inset>
-                                    <Typography variant="h6" className="menu-items">
-                                        <Link to="/adminView">AdminView</Link>
-                                    </Typography>
-                                </ListItemText>:<></>}
                                 </>
                                 :
                                 <>
@@ -65,11 +78,6 @@ function Navbar(props: INavbarProps) {
                                     </ListItemText>
                                 </>
                             }
-                            <ListItemText inset>
-                                        <Typography variant="h6" className="menu-items">
-                                            <Link to="/decks">DeckView</Link>
-                                        </Typography>
-                                    </ListItemText>
                         </ListItem>
                     </List>
                 </Typography>

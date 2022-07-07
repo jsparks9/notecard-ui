@@ -8,6 +8,7 @@ import Navbar from './components/Navbar';
 import Register from './components/Register';
 import AdminView from './components/AdminView';
 import DeckView from './components/Decks';
+import CreateCard from './components/CreateCard';
 
 function App() {
   
@@ -23,6 +24,7 @@ function App() {
         <Route path='/decks'  element={<DeckView/>}/>
         <Route path='/adminView'  element={<AdminView currentUser={authUser}/>}/>
         <Route path='/register'  element={<Register currentUser={authUser} setCurrentUser={setAuthUser}/>}/>
+        <Route path='/createCard' element={<CreateCard currentUser={authUser}/>}/>
       </Routes>
     </>
   );

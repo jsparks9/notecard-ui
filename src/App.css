@@ -111,3 +111,27 @@ a:-webkit-any-link {
     transform: rotate(360deg);
   }
 }
+
+#registration-form {
+  margin-top: 5%;
+}
+
+.registration-title{
+  color: #374d70;
+  text-align: center;
+  margin-top: 5%;
+}
+
+.create-title {
+  color: #374d70;
+  text-align: center;
+  margin-top: 5%;
+}
+
+#card-create {
+  text-align: center;
+}
+
+#createButton {
+  margin-top: 2%;
+}

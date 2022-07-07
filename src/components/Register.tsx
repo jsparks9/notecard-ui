@@ -96,6 +96,7 @@ function Register(props: IRegisterProps) {
 
     <>
         <></>
+        <h2 className="registration-title">Create your account</h2>
         <Box
             id="registration-form"
             component="form"
