@@ -91,7 +91,7 @@ function Register(props: IRegisterProps) {
     return ( 
 
         props.currentUser ? //<p>You're already logged in, redirecting you to Dashboard</p> : 
-        <Navigate to="/dashboard"/> :
+        <Navigate to="/decks"/> :
         // show dashboard instead of this <p> tag content
 
     <>

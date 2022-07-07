@@ -96,7 +96,7 @@ function Login(props: ILoginProps) {
     return ( 
     
         props.currentUser ? 
-        <Navigate to="/dashboard"/> :
+        <Navigate to="/decks"/> :
         // show dashboard instead of this <p> tag content
         <> <div className="img-container">
                 <div className="img-parent">               
