@@ -12,6 +12,7 @@ import CreateCard from './components/CreateCard';
 import Cards from './components/Cards';
 import Flashcard from './components/flashcard';
 import Pic from './components/Pic';
+import NewDeck from './components/CreateDeck';
 
 
 function App() {
@@ -31,6 +32,7 @@ function App() {
         <Route path='/adminView'  element={<AdminView currentUser={authUser}/>}/>
         <Route path='/register'  element={<Register currentUser={authUser} setCurrentUser={setAuthUser}/>}/>
         <Route path='/createCard' element={<CreateCard currentUser={authUser}/>}/>
+        <Route path='/createDeck' element={<NewDeck currentUser={authUser}/>}/>
         <Route path='/cards' element={<Cards/>}/>
         <Route path='/flashcards' element={<Flashcard currentSelection={selection} setCurrentSelection={setSelection}/>}/>
       </Routes>

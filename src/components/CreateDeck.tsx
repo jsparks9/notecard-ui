@@ -9,27 +9,22 @@ interface INewCardProps {
     currentUser: User | undefined | null
 }
 
-function NewCard(props: INewCardProps) {
-    const [html_q, setHtml_q] = useState('');
-    const [html_a, setHtml_a] = useState('');
-    const [creator_id, setCreator_id] = useState<number>();
+function NewDeck(props: INewCardProps) {
+
+    const [deckname, setName] = useState('');
     const [errorMsg, setErrorMsg] = useState<string>();
 
 
-    let newQuestion = (e: SyntheticEvent) => {
-        setHtml_q((e.target as HTMLInputElement).value);
+    let deckName = (e: SyntheticEvent) => {
+        setName((e.target as HTMLInputElement).value);
     }
 
-    let newAnswer = (e: SyntheticEvent) => {
-        setHtml_a((e.target as HTMLInputElement).value);
-    }
 
-    let createCard = async (e: SyntheticEvent) => {
+    let createDeck = async (e: SyntheticEvent) => {
         e.preventDefault();
-        setCreator_id(props.currentUser?.authUserId)
 
-        if (!html_q || !html_a) {
-            setErrorMsg("Notecard Question and Answer are required to create a new notecard.")
+        if (!deckname) {
+            setErrorMsg("Deckname required")
         } else {
             setErrorMsg('');
             let token = "";
@@ -37,22 +32,22 @@ function NewCard(props: INewCardProps) {
                 token = props.currentUser.token
             }
             try {
-                let resp = await fetch('http://notecardapi-env.eba-psis3xqw.us-east-1.elasticbeanstalk.com/notecard/card/create', {
+                let resp = await fetch('http://notecardapi-env.eba-psis3xqw.us-east-1.elasticbeanstalk.com/notecard/deck/create', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
                         'Authorization': token
                     },
-                    body: JSON.stringify({html_q, html_a, creator_id})
+                    body: JSON.stringify({deckname})
                 });
                 if (Math.floor(resp.status/100) != 2) {
-                    setErrorMsg('Could not create new Notecard')
+                    setErrorMsg('Could not create new Deck')
                     let data = await resp.json();
                     setErrorMsg(data.message);
                 } else {
                     // let data = await resp.json();
                     // console.log(data);
-                    setErrorMsg('Card created');
+                    setErrorMsg('Deck created');
                 }
             } catch(err) {
                 setErrorMsg('There was an error communicating with the API');
@@ -66,7 +61,7 @@ function NewCard(props: INewCardProps) {
          <Navigate to="/login"/> :
         <>
             <Box
-                id="card-create"
+                id="deck-create"
                 component="form"
                 sx={{
                     '& .MuiTextField-root': { m: 1, width: '25ch' },
@@ -74,27 +69,18 @@ function NewCard(props: INewCardProps) {
                     noValidate
                     autoComplete="off"
             >
-                <br />
+                <br/>
                 <div>
                     <div>
-                        <h3 className="create-title">Enter a new card question</h3>
+                        <h3 className="create-title">Enter Name of New Deck</h3>
                         <TextField
-                            id="newQuestion"
-                            label="New Card Question"
+                            id="newDeck"
+                            label="New Deck Name"
                             type="text"
-                            onChange={newQuestion}
+                            onChange={deckName}
                         />
                     </div>
-                    <div>
-                        <h3 className="create-title">Enter a new card answer</h3>
-                        <TextField
-                                id="newAnswer"
-                                label="New Card Answer"
-                                type="text"
-                                onChange={newAnswer}
-                        />
-                    </div>
-                        <Button id="createButton" onClick={createCard} variant="contained" sx= {{background: "#263238"}}>Create</Button>
+                        <Button id="createButton" onClick={createDeck} variant="contained" sx= {{background: "#263238"}}>Create</Button>
                     
                     { errorMsg ?
                         <ErrorMessage errorMessage= {errorMsg}></ErrorMessage>
@@ -109,4 +95,4 @@ function NewCard(props: INewCardProps) {
     )
 }
 
-export default NewCard;
+export default NewDeck;

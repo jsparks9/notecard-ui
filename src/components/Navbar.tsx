@@ -87,11 +87,11 @@ function Navbar(props: INavbarProps) {
                                         </Typography>
                                     </ListItemText>
                                     }                                    
-                                    <ListItemText inset>
+                                    {/* <ListItemText inset>
                                         <Typography variant="h6" className="menu-items">
                                             <Link to="/dashboard">Dashboard</Link>
                                         </Typography>
-                                    </ListItemText>
+                                    </ListItemText> */}
                                     
                                     {props.currentUser.authUserRole === "ADMIN" ?
                                     <ListItemText inset>
@@ -105,7 +105,11 @@ function Navbar(props: INavbarProps) {
                                             <Link to="/decks">Decks</Link>
                                         </Typography>
                                     </ListItemText>
-
+                                    <ListItemText inset>
+                                        <Typography variant="h6" className="menu-items">
+                                            <Link to="/createDeck">Create Deck</Link>
+                                        </Typography>
+                                    </ListItemText>
                                     <ListItemText inset>
                                         <Typography variant="h6" className="menu-items">
                                             <Link to="/Cards">Cards</Link>
