@@ -1,5 +1,5 @@
 import { AppBar, List, ListItem, ListItemText, Toolbar, Typography } from "@mui/material";
-import { useEffect, useState } from "react";
+import { SyntheticEvent, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { User } from "../models/user";
 
@@ -21,6 +21,23 @@ function Navbar(props: INavbarProps) {
         navigate("/login");
 
     }
+    let refreshPic = (e: SyntheticEvent) => {
+        setPic("");
+        let token = "";
+        if (props.currentUser && props.currentUser.token) {
+            token = props.currentUser.token;
+        }
+        fetch('http://notecardapi-env.eba-psis3xqw.us-east-1.elasticbeanstalk.com'+
+              '/notecard/pic', { // GET by default
+              headers: {
+                'Content-Type': 'application/json',
+                'Authorization' : token
+            }})
+            .then(resp => resp.json())  // return keyword is implicit
+            .then(data => setPic(data.pic as string));
+
+    }
+
 
     useEffect(() => {
         setPic("");

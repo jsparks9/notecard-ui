@@ -7,11 +7,18 @@ import ErrorMessage from "./ErrorMessage";
 
 
 
-interface IDashboardProps {
-    currentUser: User | undefined
+interface ILoginProps {
+    // An Interface is used here as it's most appropriate
+
+
+    currentUser: User | undefined | null,  // union type
+    // the imported User class
+
+    // A function that takes User type as input and outputs nothing
+    setCurrentUser: (nextUser: User) => void
 }
 
-function Pic(props: IDashboardProps) {
+function Pic(props: ILoginProps) {
 
     const [pic, setPic] = useState<string>();
     const [errorMsg, setErrorMsg] = useState<string>();
@@ -57,6 +64,16 @@ function Pic(props: IDashboardProps) {
                     setErrorMsg(data.message);            // that text is displayed
 
                 } 
+                if (Math.floor(resp.status/100) === 2) {
+                    if (props.currentUser) {
+                        props.setCurrentUser({
+                            authUserId: props.currentUser.authUserId,
+                            authUserRole: props.currentUser.authUserRole,
+                            authUsername: props.currentUser.authUsername,
+                            token: props.currentUser.token
+                        } as unknown as User);
+                    }
+                }
             } catch(err) { // This will run in situations like the API was not running
                 setErrorMsg("There was an error communicating with the API");
             } 
