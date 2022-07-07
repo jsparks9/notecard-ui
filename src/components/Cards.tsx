@@ -2,6 +2,7 @@ import { Button, TextField } from "@mui/material";
 import { Box } from "@mui/system";
 import { DataGrid, GridColDef } from "@mui/x-data-grid";
 import { SyntheticEvent, useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { cardsForCardView } from "../dtos/cardsForCardView";
 
 function CardView() {
@@ -11,9 +12,8 @@ function CardView() {
 
     const cardColumns: GridColDef[] = [
         {field: 'id', headerName: 'Card ID', width: 100},
-        {field: 'creator_id', headerName: 'Creator ID', width: 100},
-        {field: 'card_q', headerName: 'Notecard Question', width: 600},
-        {field: 'card_a', headerName: 'Notecard Answer', width: 950}
+        {field: 'html_q', headerName: 'Notecard Question', width: 600},
+        {field: 'html_a', headerName: 'Notecard Answer', width: 950}
     ];
 
     let AddToDeck = (e: SyntheticEvent) => {
@@ -52,7 +52,7 @@ function CardView() {
                 rows= {cards}
                 columns={cardColumns}
                 pageSize={8}
-                rowsPerPageOptions={[5]}
+                rowsPerPageOptions={[8]}
                 />
                 <br/>
             </div>
@@ -80,7 +80,7 @@ function CardView() {
                     </div>
                     <br/>
                     <Button id="addToDeckButton" onClick={AddToDeck} variant="contained" sx={{background: "#263238", marginLeft: "5%"}}>Add Card to Deck</Button>
-                    
+                    <Link to ="/createCard"><Button id="createNewCardButton" variant="contained" sx={{background: "#263238", marginLeft: "1%"}}>Create new Card</Button></Link>
                 </Box>
 
 

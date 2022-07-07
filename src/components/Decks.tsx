@@ -2,6 +2,7 @@ import { Box, Button, TextField, Typography } from "@mui/material";
 import { SyntheticEvent, useEffect, useState } from "react";
 import { DataGrid, GridColDef } from '@mui/x-data-grid';
 import { deckForDeckView } from "../dtos/deckForDeckView";
+import { Link } from "react-router-dom";
 
 interface ICurrentSelectionProps {
     currentSelection: string | undefined | null,
@@ -13,6 +14,10 @@ function DeckView(props: ICurrentSelectionProps) {
     const [decks, setDecks] = useState([] as deckForDeckView[]);
     const [deckSelection, setDeckSelection] = useState<string>();
 
+    let userSelection: string;
+
+    // userSelection = deckSelection;
+
     const deckColumns: GridColDef[] = [
         { field: 'id', headerName: 'Deck ID', width: 70},
         { field: 'owner_id', headerName: 'Owner ID', width: 90 },
@@ -22,13 +27,15 @@ function DeckView(props: ICurrentSelectionProps) {
     ];
     
     let UpdateSelection= (e: SyntheticEvent) => {
-        setDeckSelection((e.target as HTMLInputElement).value);
+        userSelection = ((e.target as HTMLInputElement).value);
         
     }
 
     let ViewDeck = (e: SyntheticEvent) => {
         return(
-            props.setCurrentSelection(deckSelection)
+            props.setCurrentSelection(userSelection)
+            
+            
             //TODO: implement navigate to flashcard, passing user selection to flashcard component
         )
     }
@@ -80,7 +87,7 @@ function DeckView(props: ICurrentSelectionProps) {
                         />
                     </div>
                     <br/>
-                    <Button id="addToDeckButton" onClick={ViewDeck} variant="contained" sx={{background: "#263238", marginLeft: "5%"}}>View Selected Deck</Button>
+                    <Link to="/flashcards"><Button id="addToDeckButton" onClick={ViewDeck} variant="contained" sx={{background: "#263238", marginLeft: "5%"}}>View Selected Deck</Button></Link>
                 </Box>
         </> 
     )
