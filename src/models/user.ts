@@ -8,6 +8,6 @@ export class User {
         this.authUserId = id;
         this.authUserRole = r;
         this.authUsername = un;
-        this.token = token;
+        this.token = token
     }
 }

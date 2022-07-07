@@ -11,6 +11,7 @@ import DeckView from './components/Decks';
 import CreateCard from './components/CreateCard';
 import Cards from './components/Cards';
 import Flashcard from './components/Flashcard';
+import Pic from './components/Pic';
 
 
 function App() {
@@ -26,6 +27,7 @@ function App() {
         <Route path="/login" element={<Login currentUser={authUser} setCurrentUser={setAuthUser}/>}/>
         <Route path='/dashboard'  element={<Dashboard currentUser={authUser}/>}/>
         <Route path='/decks'  element={<DeckView currentSelection={selection} setCurrentSelection={setSelection}/>}/>
+        <Route path='/picsetter'  element={<Pic currentUser={authUser} setCurrentUser={setAuthUser}/>}/>
         <Route path='/adminView'  element={<AdminView currentUser={authUser}/>}/>
         <Route path='/register'  element={<Register currentUser={authUser} setCurrentUser={setAuthUser}/>}/>
         <Route path='/createCard' element={<CreateCard currentUser={authUser}/>}/>
