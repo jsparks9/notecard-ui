@@ -113,11 +113,6 @@ function Register(props: IRegisterProps) {
             autoComplete="off"
         >
             <div>
-                { errorMsg ? // ternary op
-                                <ErrorMessage errorMessage = {errorMsg}></ErrorMessage>
-                                : // if falsey
-                                <><br/></>
-                }
                 <div>
                     <TextField
                         id="un-registration"
@@ -156,9 +151,15 @@ function Register(props: IRegisterProps) {
                         onChange={updatePassword}
                     />
                 </div>
+                { errorMsg ?
+                                <ErrorMessage errorMessage = {errorMsg}></ErrorMessage>
+                                :
+                                <><br/></>
+                }
                 <div>
                 <Button id="register-button" onClick={register} variant="contained" sx= {{background: "#263238"}}>Register</Button>
                 </div>
+                
                 <br/><br/><br/>
             </div>
         </Box>

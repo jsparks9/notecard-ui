@@ -26,7 +26,7 @@ function CardView() {
             setErrorMsg("Card and Deck IDs required");
         } else {
             try {
-                let resp = await fetch('http://localhost:5000/notecard/card/carddeck', 
+                let resp = await fetch('http://notecardapi-env.eba-psis3xqw.us-east-1.elasticbeanstalk.com/notecard/card/carddeck', 
                     {
                         method: 'POST', 
                         headers: { 'Content-Type': 'application/json' },
@@ -62,7 +62,7 @@ function CardView() {
 
     useEffect(() => {
 
-        fetch('http://localhost:5000/notecard/card/view')
+        fetch('http://notecardapi-env.eba-psis3xqw.us-east-1.elasticbeanstalk.com/notecard/card/view')
             .then(resp => resp.json())
             .then(data => setCards(data as unknown as cardsForCardView[]));
         return () => {
