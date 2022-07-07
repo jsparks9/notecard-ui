@@ -95,6 +95,12 @@ function Register(props: IRegisterProps) {
         // show dashboard instead of this <p> tag content
 
     <>
+        <div className="img-container">
+            <div className="img-parent">
+                <img src="https://i.imgur.com/u7ir75v.png" alt="logo" className="app-logo"/>
+                <img src="https://i.imgur.com/Pi5dL2u.png" alt="card" className="app-frame"/>
+            </div>
+        </div>
         <></>
         <h2 className="registration-title">Create your account</h2>
         <Box
@@ -108,6 +114,11 @@ function Register(props: IRegisterProps) {
         >
             <br/><br/>
             <div>
+                { errorMsg ? // ternary op
+                                <ErrorMessage errorMessage = {errorMsg}></ErrorMessage>
+                                : // if falsey
+                                <><br/></>
+                }
                 <div>
                     <TextField
                         id="un-registration"
@@ -146,13 +157,9 @@ function Register(props: IRegisterProps) {
                         onChange={updatePassword}
                     />
                 </div>
-                { errorMsg ? // ternary op
-                                <ErrorMessage errorMessage = {errorMsg}></ErrorMessage>
-                                : // if falsey
-                                <><br/></>
-                }
-
-                <Button id="register-button" onClick={register} variant="contained">Register</Button>
+                <div>
+                <Button id="register-button" className="genericButton"  onClick={register} variant="contained">Register</Button>
+                </div>
                 <br/><br/><br/>
             </div>
         </Box>

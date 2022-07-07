@@ -141,7 +141,7 @@ function Login(props: ILoginProps) {
                                 : // if falsey
                                 <><br/></>
                 }
-                <Button id="login-button" onClick={login} variant="contained">Login</Button>
+                <Button id="login-button" onClick={login} variant="contained" sx= {{background: "#263238"}}>Login</Button>
                 <br/><br/><br/>
             </div>
         </Box>

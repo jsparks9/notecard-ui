@@ -23,10 +23,10 @@ function Navbar(props: INavbarProps) {
     // function goTo(route: string) { navigate(route); }
 
     return (<>
-        <AppBar position="static" id="navbar">
-            <Toolbar>
-                <Typography>
-                    <List component="nav">
+        <AppBar position="static" id="navbar" >
+            <Toolbar sx={{background: "#263238", fontFamily: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif"}}>
+                <Typography >
+                    <List component="nav" >
                         <ListItem>
                             <Typography variant="h4" >Notecard</Typography>
                             {

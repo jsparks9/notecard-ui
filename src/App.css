@@ -1,15 +1,3 @@
-#navbar {
-  color: white;
-  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background-color: rgb(25,118,210);
-  cursor: pointer;
-  z-index: 100;
-  position: fixed;
-  opacity: 0.8;
-  
-}
-
-
 #placeholder {
   z-index: 0;
   position: float;
@@ -51,12 +39,12 @@ a:-webkit-any-link {
   margin: 0 5% 0 5%;
  }
 
- #create-card {
+ #create-card, #addCardSelect {
   margin-left: 5%;
  }
  
- #addCardSelect {
-  margin-left: 5%;
+ .adminField {
+  margin-left: .5%;
  }
 
 
@@ -65,8 +53,6 @@ a:-webkit-any-link {
   grid-template-columns: repeat(auto-fit, 200px);
   justify-content: center;  
   position: relative;
-  margin-top: 2%;
-  margin-bottom: 2%;
 }
 .img-parent {
   display: grid;
@@ -113,13 +99,16 @@ a:-webkit-any-link {
 }
 
 #registration-form {
-  margin-top: 5%;
+  margin-top: 2%;
 }
 
 .registration-title{
   color: #374d70;
   text-align: center;
-  margin-top: 5%;
+}
+
+.genericButton {
+  background-color: #323233;
 }
 
 .create-title {
