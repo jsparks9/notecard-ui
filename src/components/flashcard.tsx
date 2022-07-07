@@ -56,7 +56,7 @@ function Flashcard(props: IFlashcardProps) {
             getNextCard();
             setShowQ(true);
         }
-        let resp = await fetch('http://localhost:5000/notecard/deck/id/'+props.currentSelection);
+        let resp = await fetch('http://notecardapi-env.eba-psis3xqw.us-east-1.elasticbeanstalk.com/notecard/deck/id/'+props.currentSelection);
             if (Math.floor(resp.status/100) !== 2) { // if that code is not a 200, 204, 2-whatever
                 setErrorMsg("Could not validate provided credentials!"); 
                 let data = await resp.json();

@@ -37,7 +37,7 @@ function NewCard(props: INewCardProps) {
                 token = props.currentUser.token
             }
             try {
-                let resp = await fetch('http://localhost:5000/notecard/card/create', {
+                let resp = await fetch('http://notecardapi-env.eba-psis3xqw.us-east-1.elasticbeanstalk.com/notecard/card/create', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',

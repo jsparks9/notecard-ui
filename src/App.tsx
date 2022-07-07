@@ -10,7 +10,7 @@ import AdminView from './components/AdminView';
 import DeckView from './components/Decks';
 import CreateCard from './components/CreateCard';
 import Cards from './components/Cards';
-import Flashcard from './components/Flashcard';
+import Flashcard from './components/flashcard';
 import Pic from './components/Pic';
 
 
