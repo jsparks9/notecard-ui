@@ -1,15 +1,3 @@
-#navbar {
-  color: white;
-  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background-color: rgb(25,118,210);
-  cursor: pointer;
-  z-index: 100;
-  position: fixed;
-  opacity: 0.8;
-  
-}
-
-
 #placeholder {
   z-index: 0;
   position: float;
@@ -47,26 +35,24 @@ a:-webkit-any-link {
   text-align: center;
  }
 
- #notecardGrid, #deckGrid {
+ #notecardGrid, #deckGrid, #cardGrid {
   margin: 0 5% 0 5%;
  }
 
- #create-card {
+
+ #create-card, #addCardSelect, .cardField, .deckField {
   margin-left: 5%;
  }
  
- #addCardSelect {
-  margin-left: 5%;
+ .adminField, .adminError {
+  margin-left: 10%;
  }
-
 
 .img-container {
   display: grid;
   grid-template-columns: repeat(auto-fit, 200px);
   justify-content: center;  
   position: relative;
-  margin-top: 2%;
-  margin-bottom: 2%;
 }
 .img-parent {
   display: grid;
@@ -110,4 +96,43 @@ a:-webkit-any-link {
   to {
     transform: rotate(360deg);
   }
+}
+
+#registration-form {
+  margin-top: 2%;
+}
+
+.registration-title{
+  color: #374d70;
+  text-align: center;
+}
+
+.create-title {
+  color: #374d70;
+  text-align: center;
+  margin-top: 2%;
+}
+
+#card-create {
+  text-align: center;
+}
+
+#createButton {
+  margin-top: 2%;
+}
+
+.card {
+  text-align: center;
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin-left: 10%;
+  margin-right: 10%;
+}
+
+.qControl {
+  color: #374d70;
+}
+
+.cardError {
+  margin-left: 5%;
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }

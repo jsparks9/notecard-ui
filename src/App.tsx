@@ -8,12 +8,17 @@ import Navbar from './components/Navbar';
 import Register from './components/Register';
 import AdminView from './components/AdminView';
 import DeckView from './components/Decks';
+import CreateCard from './components/CreateCard';
+import Cards from './components/Cards';
+import Flashcard from './components/Flashcard';
 import Pic from './components/Pic';
+
 
 function App() {
   
   const [authUser, setAuthUser] = useState<User>(); // undefined as unknown as User
   const [token, setToken] = useState<string>();
+  const [selection, setSelection] = useState<string>();
 
   return (
     <>
@@ -21,10 +26,13 @@ function App() {
       <Routes>
         <Route path="/login" element={<Login currentUser={authUser} setCurrentUser={setAuthUser}/>}/>
         <Route path='/dashboard'  element={<Dashboard currentUser={authUser}/>}/>
+        <Route path='/decks'  element={<DeckView currentSelection={selection} setCurrentSelection={setSelection}/>}/>
         <Route path='/picsetter'  element={<Pic currentUser={authUser} setCurrentUser={setAuthUser}/>}/>
-        <Route path='/decks'  element={<DeckView/>}/>
         <Route path='/adminView'  element={<AdminView currentUser={authUser}/>}/>
         <Route path='/register'  element={<Register currentUser={authUser} setCurrentUser={setAuthUser}/>}/>
+        <Route path='/createCard' element={<CreateCard currentUser={authUser}/>}/>
+        <Route path='/cards' element={<Cards/>}/>
+        <Route path='/flashcards' element={<Flashcard currentSelection={selection} setCurrentSelection={setSelection}/>}/>
       </Routes>
     </>
   );

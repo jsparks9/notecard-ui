@@ -100,6 +100,21 @@ function AdminView(props: IDashboardProps) {
         <>            
             <br/>
             {/* <h4 style={{ color: "#374d70", fontFamily:"'Segoe UI', Tahoma, Geneva, Verdana, sans-serif", textAlign: "left"}}>Update user by ID or UserName</h4> */}
+            
+            {/* <h1>Welcome, {props.currentUser.fname}</h1> */}
+            <Typography variant="h4" style={{ textAlign: "center", color: "#374d70", fontFamily:"'Segoe UI', Tahoma, Geneva, Verdana, sans-serif", fontWeight:600}}>Notecard Users</Typography>
+            <div style={{ height: 400, marginLeft: "10%", marginRight: "10%" }}>
+                <DataGrid
+                    style={{ 
+                        fontFamily:"'Segoe UI', Tahoma, Geneva, Verdana, sans-serif", textAlign: "left"
+                    }}
+                    rows={users}
+                    columns={columns}
+                    pageSize={5}
+                    rowsPerPageOptions={[5]}
+                    checkboxSelection
+                />
+            </div>
             <Box
             component="form"
             sx={{
@@ -108,7 +123,7 @@ function AdminView(props: IDashboardProps) {
             noValidate
             autoComplete="off"
             >
-                <div>
+                <div className="adminField">
                 <TextField
                     id="ban-field"
                     label="User to Update"
@@ -124,30 +139,16 @@ function AdminView(props: IDashboardProps) {
                 </div>
                 
                 <br/>
-                <Button id="ban-button" onClick={UpdateUser} variant="contained">Update</Button>
+                <Button id="ban-button" onClick={UpdateUser} variant="contained" sx={{background: "#263238", marginLeft: "11%"}}>Update</Button>
                 
                 { errorMsg ? // ternary op
+                    <div className="adminError">
                     <ErrorMessage errorMessage = {errorMsg}></ErrorMessage>
+                    </div>
                     : 
                     <><br/><br/></>
                 }
             </Box>
-
-
-            {/* <h1>Welcome, {props.currentUser.fname}</h1> */}
-            <Typography variant="subtitle1" style={{ color: "#374d70", fontFamily:"'Segoe UI', Tahoma, Geneva, Verdana, sans-serif", fontWeight:600}}>Notecard Users</Typography>
-            <div style={{ height: 400, width: '100%' }}>
-                <DataGrid
-                    style={{ color: "#374d70", 
-                        fontFamily:"'Segoe UI', Tahoma, Geneva, Verdana, sans-serif", textAlign: "left"
-                    }}
-                    rows={users}
-                    columns={columns}
-                    pageSize={5}
-                    rowsPerPageOptions={[5]}
-                    checkboxSelection
-                />
-            </div>
         </>
     )
 }

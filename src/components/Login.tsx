@@ -1,6 +1,6 @@
 import { Box, TextField } from "@mui/material";
 import Button from '@mui/material/Button';
-import { SyntheticEvent, useState } from "react";
+import { SyntheticEvent, useState, KeyboardEvent } from "react";
 import { Navigate } from "react-router-dom";
 import { User } from "../models/user";
 import ErrorMessage from "./ErrorMessage";
@@ -41,6 +41,12 @@ function Login(props: ILoginProps) {
             setPassword((e.target as HTMLInputElement).value); 
 
         }
+
+        let keydownHandler = (e: KeyboardEvent) => {
+            if (e.key === 'Enter') {
+                login(e);
+            }
+        }
         
         let login = async (e: SyntheticEvent) => {
             
@@ -56,8 +62,7 @@ function Login(props: ILoginProps) {
                 setErrorMsg(''); // remove any error currently displayed
                 try {
                     // await means that "resp" variable is the response, rather than a promise
-                    let resp = await fetch('http://notecardapi-env.eba-psis3xqw.us-east-1.elasticbeanstalk.com'+
-                                           '/notecard/auth/login', // API endpoint
+                    let resp = await fetch('http://localhost:5000/notecard/auth/login', // API endpoint
                         {
                             method: 'POST', 
                             headers: { 'Content-Type': 'application/json' },
@@ -115,6 +120,7 @@ function Login(props: ILoginProps) {
                         id="un-login"
                         label="username@revature.net"
                         type="Email"
+                        onKeyUp={keydownHandler}
                         onChange={updateUsername}
                     />
                 </div>
@@ -125,6 +131,7 @@ function Login(props: ILoginProps) {
                         type="password"
                         autoComplete="current-password"
                         //helperText="Password must include: "
+                        onKeyUp={keydownHandler}
                         onChange={updatePassword}
                     />
                 </div>
@@ -134,7 +141,7 @@ function Login(props: ILoginProps) {
                                 : // if falsey
                                 <><br/></>
                 }
-                <Button id="login-button" onClick={login} variant="contained">Login</Button>
+                <Button id="login-button" onClick={login} variant="contained" sx= {{background: "#263238"}}>Login</Button>
                 <br/><br/><br/>
             </div>
         </Box>
@@ -161,4 +168,4 @@ function Login(props: ILoginProps) {
     )
 }
 
-export default Login; // export so it's avaliable to App.tsx
+export default Login; // export so it's available to App.tsx
