@@ -127,3 +127,12 @@ a:-webkit-any-link {
   margin-left: 10%;
   margin-right: 10%;
 }
+
+.qControl {
+  color: #374d70;
+}
+
+.cardError {
+  margin-left: 5%;
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}

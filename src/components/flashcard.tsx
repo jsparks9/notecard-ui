@@ -85,7 +85,7 @@ function Flashcard(props: IFlashcardProps) {
                     <></>
                 }
                 <br/>
-                <div id="q_control" onClick={getNextCard}>
+                <div id="q_control" className="qControl" onClick={getNextCard}>
                     { (displayCard && showQ) ? <div  dangerouslySetInnerHTML={{__html: displayCard.html_q}}></div>
                             : <p id="question">Click me to display a question.</p>
                     }
