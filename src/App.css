@@ -35,18 +35,18 @@ a:-webkit-any-link {
   text-align: center;
  }
 
- #notecardGrid, #deckGrid {
+ #notecardGrid, #deckGrid, #cardGrid {
   margin: 0 5% 0 5%;
  }
 
- #create-card, #addCardSelect {
+
+ #create-card, #addCardSelect, .cardField {
   margin-left: 5%;
  }
  
- .adminField {
-  margin-left: .5%;
+ .adminField, .adminError {
+  margin-left: 10%;
  }
-
 
 .img-container {
   display: grid;
@@ -107,14 +107,10 @@ a:-webkit-any-link {
   text-align: center;
 }
 
-.genericButton {
-  background-color: #323233;
-}
-
 .create-title {
   color: #374d70;
   text-align: center;
-  margin-top: 5%;
+  margin-top: 2%;
 }
 
 #card-create {

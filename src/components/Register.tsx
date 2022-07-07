@@ -112,7 +112,6 @@ function Register(props: IRegisterProps) {
             noValidate
             autoComplete="off"
         >
-            <br/><br/>
             <div>
                 { errorMsg ? // ternary op
                                 <ErrorMessage errorMessage = {errorMsg}></ErrorMessage>
@@ -158,7 +157,7 @@ function Register(props: IRegisterProps) {
                     />
                 </div>
                 <div>
-                <Button id="register-button" className="genericButton"  onClick={register} variant="contained">Register</Button>
+                <Button id="register-button" onClick={register} variant="contained" sx= {{background: "#263238"}}>Register</Button>
                 </div>
                 <br/><br/><br/>
             </div>

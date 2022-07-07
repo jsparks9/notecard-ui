@@ -43,7 +43,6 @@ function DeckView() {
                 columns={deckColumns}
                 pageSize={5}
                 rowsPerPageOptions={[5]}
-                checkboxSelection
                 />
                 <br/>
             </div>

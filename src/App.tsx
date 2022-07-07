@@ -9,6 +9,7 @@ import Register from './components/Register';
 import AdminView from './components/AdminView';
 import DeckView from './components/Decks';
 import CreateCard from './components/CreateCard';
+import Cards from './components/Cards';
 
 function App() {
   
@@ -25,6 +26,7 @@ function App() {
         <Route path='/adminView'  element={<AdminView currentUser={authUser}/>}/>
         <Route path='/register'  element={<Register currentUser={authUser} setCurrentUser={setAuthUser}/>}/>
         <Route path='/createCard' element={<CreateCard currentUser={authUser}/>}/>
+        <Route path='/cards' element={<Cards/>}/>
       </Routes>
     </>
   );

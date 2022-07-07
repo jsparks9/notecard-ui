@@ -94,7 +94,7 @@ function NewCard(props: INewCardProps) {
                                 onChange={newAnswer}
                         />
                     </div>
-                        <Button id="createButton" onClick={createCard} variant="contained">Create</Button>
+                        <Button id="createButton" onClick={createCard} variant="contained" sx= {{background: "#263238"}}>Create</Button>
                     
                     { errorMsg ?
                         <ErrorMessage errorMessage= {errorMsg}></ErrorMessage>

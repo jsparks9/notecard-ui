@@ -53,7 +53,7 @@ function Navbar(props: INavbarProps) {
 
                                     <ListItemText inset>
                                         <Typography variant="h6" className="menu-items">
-                                            <Link to="/createCard">Create Card</Link>
+                                            <Link to="/Cards">Cards</Link>
                                         </Typography>
                                     </ListItemText>
 
