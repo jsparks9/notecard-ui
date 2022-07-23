@@ -1,46 +1,103 @@
-# Getting Started with Create React App
+# HTML-Rendering Notecard Service (HRFS)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Project Description
 
-## Available Scripts
+The HTML-Rendering Notecard Service (HRFS) provides users with a new way to learn flashcards. Users can utilize this feature by registering for an account and then selecting a deck to get flashcard functionality. Users are also able to login, set their profile picture, create cards in HTML or plain-text format, create and populate decks, and view all stored decks and cards. Admin users can view all users and change user roles.
 
-In the project directory, you can run:
+### Repository Links
+- API : https://github.com/jsparks9/notecard-api
+- UI : https://github.com/jsparks9/notecard-ui
 
-### `npm start`
+### Project Design Specifications and Documents
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+##### Relational Data Model
+![Relational Model](https://raw.githubusercontent.com/jsparks9/notecard-api/main/imgs/notecardERDmvp.png)
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
 
-### `npm test`
+### Technologies
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+**Persistence Tier**
+- PostGreSQL
 
-### `npm run build`
+**Application Tier**
+- Java 8
+- Spring 5 & Spring Boot 2.5
+- Apache Maven
+- Hibernate & Spring Data
+- JSON Web Tokens
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+**Client Tier**
+- HTML
+- CSS
+- TypeScript
+- JavaScript
+- React
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+**Deployment Platform Tools**
+- Cloud Provider: Amazon Web Services (AWS)
+- Database Deployment: AWS Relational Database Service (RDS)
+- Server Deployment: AWS Elastic Beanstalk (EB) + AWS Elastic Compute Cloud (EC2)
+- UI Deployment: AWS Simple Storage Service (S3)
+- Build Automation: AWS Code Build
+- Pipeline Management: AWS Code Pipeline
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Functional Requirements
 
-### `npm run eject`
+- Functional: Users can register for an account with the system
+- Functional: Users can login to their account
+- Functional: Admin can delete users
+- Functional: Users can view all notecards in the system
+- Functional: Users can create new notecards
+- Functional: Users can create their own decks
+- Functional: Users can add any notecard to decks they own
+- Functional: Users can view all decks alongside the deck owner
+- Functional: Users can select a deck and get flashcard functionality
+- Functional: Users can set their profile picture 
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+### Non-Functional Requirements
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- Basic validation is enforced to ensure that invalid/improper data is not persisted
+- User passwords will be hashed by the system before persisting them to the data source
+- Errors and exceptions are handled properly and their details are obfuscated from the user
+- The system conforms to RESTful architecture constraints
+- The system is tested with at least 80% line coverage in all service and utility classes
+- The system's data schema and component design is documented and diagrammed 
+- The system keeps detailed logs on info, error, and fatal events that occur 
+- UI and API builds and deployments are automated using a CI/CD pipeline
+- API is deployed to AWS EC2 (via Elastic Beanstalk) as a Docker container
+- UI is deployed to a AWS S3 bucket configured for static web hosting
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+### Suggested Bonus Features
+- Responsive and intuitive UI allowing for optimal study of notecards
+- Users are able to filter all cards by keywords
+- Sleek and smooth User Experience (UI) such as drag-and-drop ability.
+- Ability for users to share notecards or notecard decks with other users to be added to their own collection
+- Account setting for "light mode" or "dark mode"
+- Admin view of accounts and a validation barrier to registration where accounts can only begin adding cards upon account validation.
+- Admin can delete any cards
+- Users can select an option to stop seeing a card 
+- Users can rate cards on a sliding scale from 0 to 10 inclusive
+- The probability of a user seeing a card they rated is a function of their ratings of it
+- Users can change their profile picture
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+#### Project Presentation 
+- Jul 8 , 2022
 
-## Learn More
+## Minimal Viable Product Requirements (End-to-end completion)
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- Functional: Users can register for an account with the system
+- Functional: Users can login to their account
+- Functional: Admin can delete users
+- Functional: Users can view all notecards in the system
+- Functional: Users can create new notecards
+- Functional: Users can create their own decks
+- Functional: Users can add any notecard to decks they own
+- Functional: Users can view all decks alongside the deck owner
+- Functional: Users can select a deck and get flashcard functionality
+- Functional: Users can set their profile picture 
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+- Non-Functional: Test coverage of the API's service layer is at least 80%
+- Non-Functional: The API's endpoints are exposed in a RESTful manner
+- Non-Functional: API provides random profile pictures for default profile picture on account creation
+- Non-Functional: User passwords are hashed or encrypted before persisting to the database
+
